@@ -1,1 +1,1 @@
-# product-selection
+# AI选品助手

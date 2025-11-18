@@ -1,0 +1,451 @@
+<!-- Step 1: 机会发现 - 完整版本 -->
+<div class="step1-container">
+
+  <!-- 顶部操作栏 -->
+  <div class="step1-header">
+    <div class="step1-header__left">
+      <h2 class="step1-title">
+        <span class="step1-title__icon">🔍</span>
+        <span class="step1-title__text">机会发现</span>
+        <span class="step1-title__subtitle">基于 MCDA v1.0 的智能选品推荐</span>
+      </h2>
+    </div>
+    <div class="step1-header__right">
+      <div class="strategy-selector">
+        <label for="strategy-select">策略模式：</label>
+        <select id="strategy-select" class="form-select">
+          <option value="综合最优" selected>综合最优</option>
+          <option value="高增长优先">高增长优先</option>
+          <option value="高利润优先">高利润优先</option>
+          <option value="蓝海机会">蓝海机会</option>
+          <option value="快速起量">快速起量</option>
+        </select>
+      </div>
+      <button id="refresh-data-btn" class="btn btn-outline-primary">
+        <i class="icon-refresh">🔄</i> 刷新数据
+      </button>
+    </div>
+  </div>
+
+  <!-- Tab 切换：全景热力图 / Top 20 推荐 -->
+  <div class="step1-tabs">
+    <button class="step1-tab active" data-tab="heatmap">
+      <span class="tab-icon">🗺️</span>
+      <span class="tab-text">全景热力图</span>
+      <span class="tab-badge" id="heatmap-count">480</span>
+    </button>
+    <button class="step1-tab" data-tab="top20">
+      <span class="tab-icon">🏆</span>
+      <span class="tab-text">Top 20 推荐</span>
+      <span class="tab-badge" id="top20-count">20</span>
+    </button>
+  </div>
+
+  <!-- ========== Tab Panel 1: 全景热力图 ========== -->
+  <div class="step1-panel active" data-panel="heatmap">
+    <div class="heatmap-analysis">
+
+      <!-- 热力图工具栏 -->
+      <div class="heatmap-toolbar">
+        <div class="heatmap-toolbar__left">
+          <!-- 视角选择 -->
+          <div class="perspective-selector">
+            <label>分析视角：</label>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-sm btn-outline-primary active" data-perspective="platform">
+                平台视角
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-primary" data-perspective="category">
+                品类视角
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-primary" data-perspective="country">
+                国家视角
+              </button>
+            </div>
+          </div>
+
+          <!-- 平台筛选（平台视角时显示） -->
+          <div class="filter-selector" id="platform-filter" style="display: flex;">
+            <label>筛选平台：</label>
+            <select id="platform-select" class="form-select form-select-sm">
+              <option value="Amazon" selected>Amazon</option>
+              <option value="TikTok">TikTok</option>
+              <option value="Temu">Temu</option>
+              <option value="AliExpress">AliExpress</option>
+            </select>
+          </div>
+
+          <!-- 品类筛选（品类视角时显示） -->
+          <div class="filter-selector" id="category-filter" style="display: none;">
+            <label>筛选品类：</label>
+            <select id="category-select" class="form-select form-select-sm">
+              <option value="3C配件">3C配件</option>
+              <option value="宠物用品">宠物用品</option>
+              <option value="家居装饰">家居装饰</option>
+              <option value="美妆个护">美妆个护</option>
+              <option value="时尚配饰">时尚配饰</option>
+              <option value="户外运动">户外运动</option>
+              <option value="母婴用品" selected>母婴用品</option>
+              <option value="玩具">玩具</option>
+              <option value="厨房用品">厨房用品</option>
+              <option value="健康美容">健康美容</option>
+              <option value="箱包配件">箱包配件</option>
+              <option value="办公文具">办公文具</option>
+            </select>
+          </div>
+
+          <!-- 国家筛选（国家视角时显示） -->
+          <div class="filter-selector" id="country-filter" style="display: none;">
+            <label>筛选国家：</label>
+            <select id="country-select" class="form-select form-select-sm">
+              <option value="US" selected>US（美国）</option>
+              <option value="JP">JP（日本）</option>
+              <option value="UK">UK（英国）</option>
+              <option value="AE">AE（阿联酋）</option>
+              <option value="VN">VN（越南）</option>
+            </select>
+          </div>
+
+          <!-- 评分维度 -->
+          <div class="dimension-selector">
+            <label>评分维度：</label>
+            <select id="dimension-select" class="form-select form-select-sm">
+              <option value="mcda_score" selected>综合分</option>
+              <option value="MA">市场吸引力(MA)</option>
+              <option value="CF">竞争可行性(CF)</option>
+              <option value="PP">利润潜力(PP)</option>
+              <option value="RF">资源匹配(RF)</option>
+              <option value="RC">风险可控(RC)</option>
+            </select>
+          </div>
+        </div>
+        <div class="heatmap-toolbar__right">
+          <button id="download-heatmap-btn" class="btn btn-sm btn-outline-success">
+            <i class="icon-camera">📷</i> 下载图表
+          </button>
+        </div>
+      </div>
+
+      <!-- 热力图容器 -->
+      <div class="heatmap-container">
+        <div id="heatmap-chart" style="width: 100%; height: 600px;"></div>
+      </div>
+
+      <!-- 热力图图例说明 -->
+      <div class="heatmap-legend">
+        <div class="legend-item">
+          <div class="legend-color" style="background: linear-gradient(to right, #50a3ba, #eac736, #d94e5d);"></div>
+          <div class="legend-text">
+            <span class="legend-label">分数范围：</span>
+            <span class="legend-range">0-70 (一般) → 70-85 (优质) → 85-100 (顶级)</span>
+          </div>
+        </div>
+        <div class="legend-tip">
+          💡 <strong>使用提示：</strong>点击热力图单元格可查看该组合的详细数据
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== Tab Panel 2: Top 20 推荐 ========== -->
+  <div class="step1-panel" data-panel="top20">
+    <div class="top20-analysis">
+
+      <!-- 策略权重说明 -->
+      <div class="strategy-info-card">
+        <div class="strategy-info-card__header">
+          <h4>当前策略权重：<span id="current-strategy-name">综合最优</span></h4>
+          <button id="customize-weights-btn" class="btn btn-sm btn-outline-primary">自定义权重</button>
+        </div>
+        <div class="strategy-weights" id="strategy-weights-display">
+          <div class="weight-item">
+            <span class="weight-label">市场吸引力(MA)</span>
+            <span class="weight-value">25%</span>
+            <div class="weight-bar"><div class="weight-bar__fill" style="width: 25%"></div></div>
+          </div>
+          <div class="weight-item">
+            <span class="weight-label">竞争可行性(CF)</span>
+            <span class="weight-value">20%</span>
+            <div class="weight-bar"><div class="weight-bar__fill" style="width: 20%"></div></div>
+          </div>
+          <div class="weight-item">
+            <span class="weight-label">利润潜力(PP)</span>
+            <span class="weight-value">30%</span>
+            <div class="weight-bar"><div class="weight-bar__fill" style="width: 30%"></div></div>
+          </div>
+          <div class="weight-item">
+            <span class="weight-label">资源匹配(RF)</span>
+            <span class="weight-value">15%</span>
+            <div class="weight-bar"><div class="weight-bar__fill" style="width: 15%"></div></div>
+          </div>
+          <div class="weight-item">
+            <span class="weight-label">风险可控(RC)</span>
+            <span class="weight-value">10%</span>
+            <div class="weight-bar"><div class="weight-bar__fill" style="width: 10%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top 20 表格 -->
+      <div class="top20-table-container">
+        <div class="table-toolbar">
+          <div class="table-toolbar__left">
+            <button id="select-all-top20-btn" class="btn btn-sm btn-outline-secondary">全选</button>
+            <button id="add-selected-to-pool-btn" class="btn btn-sm btn-primary" disabled>
+              加入候选池 (<span id="selected-count">0</span>)
+            </button>
+          </div>
+          <div class="table-toolbar__right">
+            <button id="export-top20-btn" class="btn btn-sm btn-outline-success">
+              <i class="icon-download">📥</i> 导出 Excel
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover top20-table" id="top20-table">
+            <thead>
+              <tr>
+                <th width="50"><input type="checkbox" id="select-all-checkbox"></th>
+                <th width="60">排名</th>
+                <th width="200">组合</th>
+                <th width="100" class="sortable" data-sort="mcda_score">
+                  综合分 <span class="sort-icon">⇅</span>
+                </th>
+                <th width="80" class="sortable" data-sort="MA">MA <span class="sort-icon">⇅</span></th>
+                <th width="80" class="sortable" data-sort="CF">CF <span class="sort-icon">⇅</span></th>
+                <th width="80" class="sortable" data-sort="PP">PP <span class="sort-icon">⇅</span></th>
+                <th width="80" class="sortable" data-sort="RF">RF <span class="sort-icon">⇅</span></th>
+                <th width="80" class="sortable" data-sort="RC">RC <span class="sort-icon">⇅</span></th>
+                <th width="120">机会类型</th>
+                <th width="150">市场规模</th>
+                <th width="100">增长率</th>
+                <th width="100">利润率</th>
+                <th width="120">操作</th>
+              </tr>
+            </thead>
+            <tbody id="top20-tbody">
+              <!-- 动态渲染 Top 20 数据 -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 分页器 -->
+        <div class="table-pagination">
+          <div class="pagination-info">
+            显示 <span id="page-start">1</span>-<span id="page-end">20</span>，共 <span id="total-count">480</span> 条
+          </div>
+          <div class="pagination-controls">
+            <button id="prev-page-btn" class="btn btn-sm btn-outline-secondary" disabled>上一页</button>
+            <span class="page-numbers" id="page-numbers">
+              <!-- 动态渲染页码 -->
+            </span>
+            <button id="next-page-btn" class="btn btn-sm btn-outline-secondary">下一页</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ========== 组合详情弹窗 ========== -->
+<div class="modal fade" id="combinationDetailModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <span id="modal-combination-name">组合详情</span>
+          <span id="modal-combination-score" class="badge ms-2"></span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <!-- 基本信息 -->
+        <div class="detail-section">
+          <h6 class="detail-section__title">基本信息</h6>
+          <div class="detail-basic-info">
+            <div class="info-item">
+              <span class="info-label">品类：</span>
+              <span class="info-value" id="detail-category"></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">国家：</span>
+              <span class="info-value" id="detail-country"></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">平台：</span>
+              <span class="info-value" id="detail-platform"></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">机会类型：</span>
+              <span class="info-value" id="detail-opportunity-type"></span>
+            </div>
+            <div class="info-item info-item--full">
+              <span class="info-label">标签：</span>
+              <span class="info-value" id="detail-tags"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 五维雷达图 -->
+        <div class="detail-section">
+          <h6 class="detail-section__title">五维评分雷达图</h6>
+          <div id="detail-radar-chart" style="width: 100%; height: 400px;"></div>
+        </div>
+
+        <!-- 五维详细数据 -->
+        <div class="detail-section">
+          <h6 class="detail-section__title">五维详细数据</h6>
+
+          <!-- MA: 市场吸引力 -->
+          <div class="dimension-detail">
+            <div class="dimension-header">
+              <h6>市场吸引力 (MA)</h6>
+              <span class="dimension-score" id="detail-ma-score"></span>
+            </div>
+            <table class="table table-sm detail-table">
+              <tbody id="detail-ma-table">
+                <tr><td>市场规模 (GMV)</td><td id="detail-gmv"></td></tr>
+                <tr><td>年增长率</td><td id="detail-growth-rate"></td></tr>
+                <tr><td>搜索量</td><td id="detail-search-volume"></td></tr>
+                <tr><td>月销量</td><td id="detail-monthly-sales"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- CF: 竞争可行性 -->
+          <div class="dimension-detail">
+            <div class="dimension-header">
+              <h6>竞争可行性 (CF)</h6>
+              <span class="dimension-score" id="detail-cf-score"></span>
+            </div>
+            <table class="table table-sm detail-table">
+              <tbody id="detail-cf-table">
+                <tr><td>CR5 集中度</td><td id="detail-cr5"></td></tr>
+                <tr><td>Top1 份额</td><td id="detail-top1-share"></td></tr>
+                <tr><td>垄断指数</td><td id="detail-monopoly-index"></td></tr>
+                <tr><td>竞争激烈度</td><td id="detail-competition-degree"></td></tr>
+                <tr><td>供需比</td><td id="detail-supply-demand-ratio"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- PP: 利润潜力 -->
+          <div class="dimension-detail">
+            <div class="dimension-header">
+              <h6>利润潜力 (PP)</h6>
+              <span class="dimension-score" id="detail-pp-score"></span>
+            </div>
+            <table class="table table-sm detail-table">
+              <tbody id="detail-pp-table">
+                <tr><td>毛利率</td><td id="detail-margin"></td></tr>
+                <tr><td>平均售价</td><td id="detail-avg-price"></td></tr>
+                <tr><td>转化率</td><td id="detail-conversion-rate"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- RF: 资源匹配 -->
+          <div class="dimension-detail">
+            <div class="dimension-header">
+              <h6>资源匹配 (RF)</h6>
+              <span class="dimension-score" id="detail-rf-score"></span>
+            </div>
+            <div class="dimension-description" id="detail-rf-description">
+              基于品类、国家、平台的综合资源匹配度评估
+            </div>
+          </div>
+
+          <!-- RC: 风险可控 -->
+          <div class="dimension-detail">
+            <div class="dimension-header">
+              <h6>风险可控 (RC)</h6>
+              <span class="dimension-score" id="detail-rc-score"></span>
+            </div>
+            <table class="table table-sm detail-table">
+              <tbody id="detail-rc-table">
+                <tr><td>合规等级</td><td id="detail-compliance-level"></td></tr>
+                <tr><td>退货率</td><td id="detail-return-rate"></td></tr>
+                <tr><td>平均评分</td><td id="detail-rating"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <!-- AI 建议 -->
+        <div class="detail-section">
+          <h6 class="detail-section__title">AI 智能建议</h6>
+          <div class="ai-suggestion" id="detail-ai-suggestion">
+            <!-- 动态生成 AI 建议 -->
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-outline-success" id="export-detail-pdf-btn">
+          <i class="icon-pdf">📄</i> 导出 PDF
+        </button>
+        <button type="button" class="btn btn-primary" id="add-to-pool-from-modal-btn">
+          <i class="icon-add">➕</i> 加入候选池
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 自定义权重弹窗 ========== -->
+<div class="modal fade" id="customWeightsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">自定义权重配置</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="weights-config">
+          <div class="weight-config-item">
+            <label for="weight-ma">市场吸引力 (MA)</label>
+            <input type="range" class="form-range" id="weight-ma" min="0" max="100" value="25">
+            <span class="weight-config-value">25%</span>
+          </div>
+          <div class="weight-config-item">
+            <label for="weight-cf">竞争可行性 (CF)</label>
+            <input type="range" class="form-range" id="weight-cf" min="0" max="100" value="20">
+            <span class="weight-config-value">20%</span>
+          </div>
+          <div class="weight-config-item">
+            <label for="weight-pp">利润潜力 (PP)</label>
+            <input type="range" class="form-range" id="weight-pp" min="0" max="100" value="30">
+            <span class="weight-config-value">30%</span>
+          </div>
+          <div class="weight-config-item">
+            <label for="weight-rf">资源匹配 (RF)</label>
+            <input type="range" class="form-range" id="weight-rf" min="0" max="100" value="15">
+            <span class="weight-config-value">15%</span>
+          </div>
+          <div class="weight-config-item">
+            <label for="weight-rc">风险可控 (RC)</label>
+            <input type="range" class="form-range" id="weight-rc" min="0" max="100" value="10">
+            <span class="weight-config-value">10%</span>
+          </div>
+          <div class="weight-config-total">
+            <strong>总计：</strong><span id="weight-total">100%</span>
+            <span class="weight-warning" id="weight-warning" style="display: none; color: var(--danger-color);">
+              ⚠️ 权重总和必须等于 100%
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="save-weights-btn" disabled>保存并重新计算</button>
+      </div>
+    </div>
+  </div>
+</div>

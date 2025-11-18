@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI选品助手 - 面向新市场/新平台成长型中小跨境卖家的AI原生选品与业务策略一体化平台">
+  <meta name="keywords" content="跨境电商,选品,AI,MCDA,DSTE,华为方法论">
+  <title>AI选品助手 - 智能选品决策平台</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+
+  <!-- 第三方库 CSS -->
+  <link rel="stylesheet" href="assets/libs/bootstrap.min.css">
+
+  <!-- 自定义 CSS -->
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/common.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <!-- 应用容器 -->
+  <div class="app-container">
+
+    <!-- 顶部导航栏 -->
+    <header class="app-header">
+      <div class="app-header__content">
+        <div class="app-header__brand">
+          <div class="app-header__logo">AI</div>
+          <div>
+            <h1 class="app-header__title">AI选品助手</h1>
+            <p class="app-header__subtitle">基于华为 DSTE/MCDA 方法论的智能选品决策平台</p>
+          </div>
+        </div>
+        <div class="app-header__user">
+          <span>Demo 演示版</span>
+          <span>v1.0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Tab 导航栏 -->
+    <nav class="app-tabs" role="tablist" aria-label="选品流程步骤">
+      <div class="app-tabs__container">
+        <ul class="app-tabs__list">
+          <li class="app-tabs__item">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="step-1-panel">
+              <span class="tab-btn__number">Step 1</span>
+              <span class="tab-btn__name">机会发现</span>
+            </button>
+          </li>
+          <li class="app-tabs__item">
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="step-2-panel">
+              <span class="tab-btn__number">Step 2</span>
+              <span class="tab-btn__name">品类洞察</span>
+            </button>
+          </li>
+          <li class="app-tabs__item">
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="step-3-panel">
+              <span class="tab-btn__number">Step 3</span>
+              <span class="tab-btn__name">产品选择</span>
+            </button>
+          </li>
+          <li class="app-tabs__item">
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="step-4-panel">
+              <span class="tab-btn__number">Step 4</span>
+              <span class="tab-btn__name">利润分析</span>
+            </button>
+          </li>
+          <li class="app-tabs__item">
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="step-5-panel">
+              <span class="tab-btn__number">Step 5</span>
+              <span class="tab-btn__name">竞品拆解</span>
+            </button>
+          </li>
+          <li class="app-tabs__item">
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="step-6-panel">
+              <span class="tab-btn__number">Step 6</span>
+              <span class="tab-btn__name">策略决策</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="app-main">
+      <!-- 主要内容 -->
+      <div class="app-content">
+        <div id="step-container" role="tabpanel">
+          <!-- Step 模块内容将动态加载到这里 -->
+          <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
+            <div class="spinner spinner-lg"></div>
+            <p style="margin-top: 20px;">正在加载...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 候选池侧边栏 -->
+      <aside class="app-sidebar" aria-label="候选池">
+        <div class="app-sidebar__header">
+          <h2 class="app-sidebar__title">机会候选池</h2>
+          <p class="app-sidebar__count">
+            <span class="count-current">0</span> / 5
+          </p>
+        </div>
+
+        <div class="app-sidebar__body">
+          <!-- 空状态 -->
+          <div id="pool-empty-state" class="pool-empty">
+            <div class="pool-empty__icon">📋</div>
+            <div class="pool-empty__text">
+              暂无候选组合<br>
+              从热力图或 Top 20 清单中<br>
+              添加感兴趣的机会
+            </div>
+          </div>
+
+          <!-- 候选池列表 -->
+          <div id="opportunity-pool-list">
+            <!-- 候选池项将动态渲染到这里 -->
+          </div>
+        </div>
+
+        <div class="app-sidebar__footer">
+          <div class="app-sidebar__actions">
+            <button id="compare-all-btn" class="btn btn-outline btn-sm" style="width: 100%;">
+              📊 对比全部
+            </button>
+            <button id="export-report-btn" class="btn btn-outline btn-sm" style="width: 100%;">
+              📥 导出报告
+            </button>
+            <button id="next-step-btn" class="btn btn-primary btn-sm" style="width: 100%;">
+              ➡️ 进入下一步
+            </button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- 底部信息栏 -->
+    <footer class="app-footer">
+      <div class="app-footer__content">
+        <div class="app-footer__copyright">
+          © 2025 AI选品助手 - 基于华为 DSTE/MCDA/GECOM 方法论
+        </div>
+        <div class="app-footer__version">
+          Version 1.0.0 | POC Demo
+        </div>
+        <div class="app-footer__links">
+          <a href="docs/ARCHITECTURE.md" class="app-footer__link" target="_blank">架构文档</a>
+          <a href="docs/design/01-整体流程和模块设计.md" class="app-footer__link" target="_blank">产品设计</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- 侧边栏浮动按钮（响应式：< 1200px 时显示） -->
+  <button id="sidebar-toggle-btn" class="sidebar-toggle" aria-label="打开候选池" style="display: none;">
+    📋
+    <span class="sidebar-toggle__badge" style="display: none;">0</span>
+  </button>
+
+  <!-- 侧边栏遮罩层（响应式） -->
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+  <!-- Toast 容器（由 utils.js 动态创建） -->
+
+  <!-- 第三方库 JavaScript -->
+  <script src="assets/libs/bootstrap.bundle.min.js"></script>
+  <script src="assets/libs/echarts.min.js"></script>
+  <script src="assets/libs/axios.min.js"></script>
+  <script src="assets/libs/dayjs.min.js"></script>
+  <script src="assets/libs/html2pdf.bundle.min.js"></script>
+
+  <!-- 自定义 JavaScript -->
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/mcda.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Step 模块的 JavaScript 将动态加载 -->
+
+  <script>
+    // 响应式处理：显示/隐藏侧边栏浮动按钮
+    function handleResponsiveSidebar() {
+      const toggleBtn = document.getElementById('sidebar-toggle-btn');
+      if (window.innerWidth < 1200) {
+        toggleBtn.style.display = 'flex';
+      } else {
+        toggleBtn.style.display = 'none';
+        // 确保侧边栏关闭
+        document.querySelector('.app-sidebar')?.classList.remove('open');
+        document.getElementById('sidebar-overlay')?.classList.remove('show');
+      }
+    }
+
+    // 初始化
+    handleResponsiveSidebar();
+
+    // 监听窗口大小变化
+    window.addEventListener('resize', Utils.throttle(handleResponsiveSidebar, 200));
+  </script>
+</body>
+</html>

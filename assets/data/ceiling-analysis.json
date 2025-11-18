@@ -1,0 +1,502 @@
+{
+  "categories": [
+    {
+      "category": "宠物用品",
+      "subcategory": "自动喂食器",
+      "market_scale": {
+        "current_size": 136.8,
+        "future_size": 206.7,
+        "cagr_5y": 8.61,
+        "monthly_sales": 1000000,
+        "product_count": 400,
+        "unit": "亿美元"
+      },
+      "consumer_profile": {
+        "age_distribution": {
+          "under_40": 49,
+          "millennials": 33,
+          "gen_z": 16
+        },
+        "ownership_rate": 66,
+        "spending_willingness": "高",
+        "trends": "年轻化、智能化需求旺盛"
+      },
+      "market_structure": {
+        "monopoly_index": 4,
+        "cr5": 28.9,
+        "cr10": 59.16,
+        "new_product_ratio": 18,
+        "signal": "🟡"
+      },
+      "operation_maturity": {
+        "a_plus_coverage": 98.5,
+        "video_coverage": 85.29,
+        "certification_required": ["FDA (食品接触材料)", "UL/ETL (电子产品)"],
+        "patent_risk": "中",
+        "signal": "🟡"
+      },
+      "ai_conclusion": {
+        "recommendation": "✅ 值得进入，但需注意以下要点",
+        "strengths": [
+          "行业大盘稳定增长(8.61% CAGR)，天花板高",
+          "目标人群年轻化(49% < 40岁)，智能化需求旺盛",
+          "垄断度适中(4 < 5)，新品有18%占比，非红海"
+        ],
+        "challenges": [
+          "品牌集中度59%，需要差异化产品策略",
+          "A+和视频覆盖率超85%，内容能力是必备项",
+          "专利风险较高，建议申请外观专利后再上架"
+        ],
+        "suitable_sellers": [
+          "有A+内容制作能力或预算外包",
+          "有电子产品供应链资源(FDA/UL认证渠道)",
+          "能投入时间做差异化功能开发(如APP智能控制)",
+          "有耐心等待专利申请(3-6个月)"
+        ],
+        "unsuitable_sellers": [
+          "纯价格竞争策略(已有59%被头部占据)",
+          "缺乏内容能力的传统卖家",
+          "无法解决专利风险的快速铺货模式"
+        ]
+      },
+      "detailed_data": {
+        "google_trends": {
+          "keyword": "automatic pet feeder",
+          "trend": "稳定增长",
+          "seasonality": "假期前(11-12月)有明显峰值"
+        },
+        "bsr_history": {
+          "monthly_sales_range": [800000, 1200000],
+          "product_count_range": [350, 450],
+          "conclusion": "市场容量稳定，无大幅波动"
+        },
+        "product_classification": {
+          "gravity_type": {
+            "name": "重力式",
+            "sales_share": 20,
+            "price_range": [10, 20],
+            "trend": "价格战激烈，不推荐"
+          },
+          "electronic_type": {
+            "name": "电子式",
+            "sales_share": 60,
+            "price_range": [30, 60],
+            "trend": "主流，竞争适中"
+          },
+          "smart_type": {
+            "name": "智能式",
+            "sales_share": 18,
+            "price_range": [75, 150],
+            "trend": "增长+180%，这就是机会！"
+          },
+          "other_type": {
+            "name": "其他",
+            "sales_share": 2,
+            "price_range": [5, 200],
+            "trend": "小众市场"
+          }
+        }
+      }
+    },
+    {
+      "category": "3C配件",
+      "subcategory": "无线充电器",
+      "market_scale": {
+        "current_size": 58.0,
+        "future_size": 92.5,
+        "cagr_5y": 9.75,
+        "monthly_sales": 850000,
+        "product_count": 520,
+        "unit": "亿美元"
+      },
+      "consumer_profile": {
+        "age_distribution": {
+          "under_40": 62,
+          "millennials": 38,
+          "gen_z": 24
+        },
+        "ownership_rate": 45,
+        "spending_willingness": "高",
+        "trends": "年轻科技爱好者，MagSafe 兴起"
+      },
+      "market_structure": {
+        "monopoly_index": 3.2,
+        "cr5": 35.2,
+        "cr10": 58.5,
+        "new_product_ratio": 22,
+        "signal": "🟢"
+      },
+      "operation_maturity": {
+        "a_plus_coverage": 92.5,
+        "video_coverage": 78.5,
+        "certification_required": ["UL", "CE", "FCC"],
+        "patent_risk": "高",
+        "signal": "🟡"
+      },
+      "ai_conclusion": {
+        "recommendation": "✅ 值得进入，尤其是 MagSafe 细分市场",
+        "strengths": [
+          "行业增长快速(9.75% CAGR)，市场规模翻倍",
+          "目标人群年轻化(62% < 40岁)，早期采用者多",
+          "垄断度低(3.2)，新品占比22%，竞争健康"
+        ],
+        "challenges": [
+          "专利风险极高，必须规避苹果 MagSafe 专利",
+          "技术门槛较高，需要稳定的充电芯片供应链",
+          "品牌忠诚度较低，价格竞争激烈"
+        ],
+        "suitable_sellers": [
+          "有 3C 供应链资源，能快速拿到芯片",
+          "有专利规避能力或愿意申请外观专利",
+          "能做好产品测试和质量控制(退货率敏感)",
+          "内容营销能力强，能突出快充/便携卖点"
+        ],
+        "unsuitable_sellers": [
+          "无法解决专利风险的卖家",
+          "供应链不稳定，无法保证质量",
+          "纯低价策略(已有大量白牌竞争)"
+        ]
+      },
+      "detailed_data": {
+        "google_trends": {
+          "keyword": "wireless charger",
+          "trend": "稳定增长，MagSafe 带动新一波",
+          "seasonality": "圣诞节前峰值"
+        },
+        "bsr_history": {
+          "monthly_sales_range": [700000, 1000000],
+          "product_count_range": [450, 600],
+          "conclusion": "市场容量扩张中"
+        },
+        "product_classification": {
+          "standard_qi": {
+            "name": "标准 Qi 充电器",
+            "sales_share": 35,
+            "price_range": [9.99, 19.99],
+            "trend": "成熟市场，价格战"
+          },
+          "fast_charge": {
+            "name": "快充(15W+)",
+            "sales_share": 42,
+            "price_range": [19.99, 39.99],
+            "trend": "主流，增长稳定"
+          },
+          "magsafe": {
+            "name": "MagSafe 磁吸",
+            "sales_share": 20,
+            "price_range": [29.99, 59.99],
+            "trend": "增长+220%，爆发中！"
+          },
+          "multi_device": {
+            "name": "多设备充电",
+            "sales_share": 3,
+            "price_range": [39.99, 99.99],
+            "trend": "小众高端市场"
+          }
+        }
+      }
+    },
+    {
+      "category": "家居装饰",
+      "subcategory": "智能香薰机",
+      "market_scale": {
+        "current_size": 35.2,
+        "future_size": 58.8,
+        "cagr_5y": 10.8,
+        "monthly_sales": 580000,
+        "product_count": 320,
+        "unit": "亿美元"
+      },
+      "consumer_profile": {
+        "age_distribution": {
+          "under_40": 55,
+          "millennials": 35,
+          "gen_z": 20
+        },
+        "ownership_rate": 28,
+        "spending_willingness": "中高",
+        "trends": "居家办公、健康生活方式驱动"
+      },
+      "market_structure": {
+        "monopoly_index": 2.6,
+        "cr5": 32.5,
+        "cr10": 54.8,
+        "new_product_ratio": 25,
+        "signal": "🟢"
+      },
+      "operation_maturity": {
+        "a_plus_coverage": 85.5,
+        "video_coverage": 72.8,
+        "certification_required": ["UL (电子产品)", "CE"],
+        "patent_risk": "低",
+        "signal": "🟢"
+      },
+      "ai_conclusion": {
+        "recommendation": "✅ 非常值得进入，蓝海市场",
+        "strengths": [
+          "高速增长(10.8% CAGR)，居家健康趋势驱动",
+          "垄断度极低(2.6)，新品占比25%，机会多",
+          "专利风险低，运营门槛适中",
+          "目标人群年轻化(55% < 40岁)，愿意尝试新品"
+        ],
+        "challenges": [
+          "A+覆盖率85%，需要美观的产品图和场景图",
+          "需要展示香薰精油的健康功效(合规文案)",
+          "产品同质化倾向，需要外观设计差异化"
+        ],
+        "suitable_sellers": [
+          "有产品设计能力，能做外观差异化",
+          "有香薰精油供应链(可捆绑销售提升客单价)",
+          "内容能力强，能做生活方式营销",
+          "愿意投入 A+ 和视频制作预算"
+        ],
+        "unsuitable_sellers": [
+          "纯白牌贴牌，无设计能力",
+          "无法做好场景化内容营销"
+        ]
+      },
+      "detailed_data": {
+        "google_trends": {
+          "keyword": "essential oil diffuser",
+          "trend": "稳定增长，居家办公带动",
+          "seasonality": "年底送礼季峰值"
+        },
+        "bsr_history": {
+          "monthly_sales_range": [500000, 700000],
+          "product_count_range": [280, 360],
+          "conclusion": "市场稳定扩张"
+        },
+        "product_classification": {
+          "ultrasonic": {
+            "name": "超声波雾化",
+            "sales_share": 58,
+            "price_range": [15.99, 35.99],
+            "trend": "主流，稳定增长"
+          },
+          "nebulizing": {
+            "name": "雾化式",
+            "sales_share": 12,
+            "price_range": [39.99, 79.99],
+            "trend": "小众高端"
+          },
+          "smart_wifi": {
+            "name": "WiFi 智能控制",
+            "sales_share": 25,
+            "price_range": [29.99, 59.99],
+            "trend": "增长+150%，机会！"
+          },
+          "decorative": {
+            "name": "装饰型",
+            "sales_share": 5,
+            "price_range": [25.99, 99.99],
+            "trend": "设计驱动，小众"
+          }
+        }
+      }
+    },
+    {
+      "category": "美妆个护",
+      "subcategory": "洁面仪",
+      "market_scale": {
+        "current_size": 42.5,
+        "future_size": 68.2,
+        "cagr_5y": 9.85,
+        "monthly_sales": 680000,
+        "product_count": 280,
+        "unit": "亿美元"
+      },
+      "consumer_profile": {
+        "age_distribution": {
+          "under_40": 72,
+          "millennials": 45,
+          "gen_z": 27
+        },
+        "ownership_rate": 35,
+        "spending_willingness": "高",
+        "trends": "护肤意识提升，男性市场增长"
+      },
+      "market_structure": {
+        "monopoly_index": 3.8,
+        "cr5": 45.8,
+        "cr10": 68.5,
+        "new_product_ratio": 15,
+        "signal": "🟡"
+      },
+      "operation_maturity": {
+        "a_plus_coverage": 95.8,
+        "video_coverage": 88.5,
+        "certification_required": ["FDA (皮肤接触)", "CE"],
+        "patent_risk": "中",
+        "signal": "🟡"
+      },
+      "ai_conclusion": {
+        "recommendation": "⚠️ 谨慎进入，运营门槛较高",
+        "strengths": [
+          "高速增长(9.85% CAGR)，护肤趋势驱动",
+          "目标人群极度年轻化(72% < 40岁)，消费能力强",
+          "男性市场正在爆发，新增长点"
+        ],
+        "challenges": [
+          "品牌集中度68%，头部品牌(Foreo、飞利浦)占据主导",
+          "A+和视频覆盖率超95%，内容要求极高",
+          "需要专业护肤知识和合规文案",
+          "退货率较高(10%+)，质量控制要求高"
+        ],
+        "suitable_sellers": [
+          "有美妆个护品牌运营经验",
+          "内容能力极强，能做专业护肤教育内容",
+          "有 KOL/红人资源，能做社交媒体营销",
+          "供应链稳定，能保证产品质量和一致性"
+        ],
+        "unsuitable_sellers": [
+          "无美妆行业经验的传统卖家",
+          "内容能力弱，无法做教育型营销",
+          "供应链不稳定，质量无法保证"
+        ]
+      },
+      "detailed_data": {
+        "google_trends": {
+          "keyword": "facial cleansing brush",
+          "trend": "稳定增长，TikTok 带动新一波",
+          "seasonality": "情人节、母亲节峰值"
+        },
+        "bsr_history": {
+          "monthly_sales_range": [600000, 800000],
+          "product_count_range": [250, 320],
+          "conclusion": "市场成熟，头部品牌主导"
+        },
+        "product_classification": {
+          "manual_rotation": {
+            "name": "旋转式",
+            "sales_share": 35,
+            "price_range": [19.99, 49.99],
+            "trend": "成熟市场，竞争激烈"
+          },
+          "sonic": {
+            "name": "声波震动",
+            "sales_share": 52,
+            "price_range": [29.99, 79.99],
+            "trend": "主流，稳定增长"
+          },
+          "silicone": {
+            "name": "硅胶震动",
+            "sales_share": 10,
+            "price_range": [39.99, 199.99],
+            "trend": "高端市场，Foreo 主导"
+          },
+          "multifunctional": {
+            "name": "多功能(导入/导出)",
+            "sales_share": 3,
+            "price_range": [49.99, 149.99],
+            "trend": "小众，技术门槛高"
+          }
+        }
+      }
+    },
+    {
+      "category": "时尚配饰",
+      "subcategory": "智能手表表带",
+      "market_scale": {
+        "current_size": 28.5,
+        "future_size": 52.8,
+        "cagr_5y": 13.2,
+        "monthly_sales": 720000,
+        "product_count": 850,
+        "unit": "亿美元"
+      },
+      "consumer_profile": {
+        "age_distribution": {
+          "under_40": 68,
+          "millennials": 42,
+          "gen_z": 26
+        },
+        "ownership_rate": 32,
+        "spending_willingness": "中高",
+        "trends": "Apple Watch 普及，个性化需求强"
+      },
+      "market_structure": {
+        "monopoly_index": 2.2,
+        "cr5": 28.5,
+        "cr10": 48.2,
+        "new_product_ratio": 32,
+        "signal": "🟢"
+      },
+      "operation_maturity": {
+        "a_plus_coverage": 68.5,
+        "video_coverage": 58.2,
+        "certification_required": ["无特殊认证"],
+        "patent_risk": "低",
+        "signal": "🟢"
+      },
+      "ai_conclusion": {
+        "recommendation": "✅ 非常值得进入，典型蓝海市场",
+        "strengths": [
+          "超高速增长(13.2% CAGR)，智能手表普及驱动",
+          "垄断度极低(2.2)，新品占比32%，极度分散",
+          "运营门槛低，无需认证，专利风险低",
+          "个性化需求强，产品差异化容易"
+        ],
+        "challenges": [
+          "SKU 极多，需要精细化运营和库存管理",
+          "客单价较低($15-30)，需要走量",
+          "时尚趋势变化快，需要快速迭代"
+        ],
+        "suitable_sellers": [
+          "有快速反应的供应链，能快速上新",
+          "有设计能力或能快速跟进时尚趋势",
+          "愿意做多 SKU 精细化运营",
+          "有社交媒体营销能力(Instagram/TikTok)"
+        ],
+        "unsuitable_sellers": [
+          "供应链反应慢，无法快速上新",
+          "不愿意做多 SKU 管理",
+          "无设计审美能力"
+        ]
+      },
+      "detailed_data": {
+        "google_trends": {
+          "keyword": "apple watch band",
+          "trend": "持续增长，每年新款 Apple Watch 发布后峰值",
+          "seasonality": "9月(新品发布)、年底送礼季"
+        },
+        "bsr_history": {
+          "monthly_sales_range": [650000, 850000],
+          "product_count_range": [750, 950],
+          "conclusion": "市场高速扩张，SKU 数量激增"
+        },
+        "product_classification": {
+          "sport": {
+            "name": "运动型(硅胶)",
+            "sales_share": 42,
+            "price_range": [9.99, 19.99],
+            "trend": "最大份额，竞争激烈但量大"
+          },
+          "leather": {
+            "name": "皮质表带",
+            "sales_share": 25,
+            "price_range": [15.99, 39.99],
+            "trend": "稳定增长，商务场景"
+          },
+          "metal": {
+            "name": "金属表带",
+            "sales_share": 18,
+            "price_range": [19.99, 59.99],
+            "trend": "中高端市场"
+          },
+          "nylon_fabric": {
+            "name": "尼龙/编织",
+            "sales_share": 12,
+            "price_range": [12.99, 29.99],
+            "trend": "休闲风格，年轻人喜欢"
+          },
+          "designer": {
+            "name": "设计师款",
+            "sales_share": 3,
+            "price_range": [29.99, 99.99],
+            "trend": "小众，高毛利"
+          }
+        }
+      }
+    }
+  ]
+}

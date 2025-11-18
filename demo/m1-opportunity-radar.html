@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M1 多平台机会雷达 - AI选品平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 头部 */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        /* 战略前置区 */
+        .pre-step-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .method-badge {
+            background: #f0f4ff;
+            color: #4c6ef5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group select,
+        .form-group input {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* 筛选控制区 */
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .filter-tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .sort-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .sort-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        /* 机会卡片网格 */
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* 机会卡片 */
+        .opportunity-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .opportunity-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .platform-market {
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .platform-tag,
+        .market-tag {
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .platform-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .market-tag {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        /* 评分区域 */
+        .score-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .score-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 24px;
+            position: relative;
+        }
+
+        .score-circle.grade-a {
+            background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
+            color: white;
+        }
+
+        .score-circle.grade-b {
+            background: linear-gradient(135deg, #fddb92 0%, #f7b733 100%);
+            color: white;
+        }
+
+        .score-circle.grade-c {
+            background: linear-gradient(135deg, #ffa585 0%, #ff6a88 100%);
+            color: white;
+        }
+
+        .score-label {
+            font-size: 10px;
+            margin-top: 2px;
+            opacity: 0.9;
+        }
+
+        .priority-badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .priority-p0 {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .priority-p1 {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        /* 核心指标 */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .metric-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .trend-up {
+            color: #56ab2f;
+        }
+
+        .trend-down {
+            color: #dc3545;
+        }
+
+        /* 亮点标签 */
+        .highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .highlight-tag {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .highlight-growth {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .highlight-competition {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-profit {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        /* MCDA维度评分 */
+        .mcda-dimensions {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .dimension-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .dimension-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .dimension-label {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .dimension-bar-container {
+            flex: 1;
+            max-width: 120px;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 10px;
+        }
+
+        .dimension-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .dimension-score {
+            font-weight: 600;
+            color: #667eea;
+            min-width: 30px;
+            text-align: right;
+        }
+
+        /* 适配理由和风险提示 */
+        .fit-reason,
+        .risk-warning {
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .fit-reason {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 3px solid #4caf50;
+        }
+
+        .risk-warning {
+            background: #fff3e0;
+            color: #e65100;
+            border-left: 3px solid #ff9800;
+        }
+
+        .icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* 操作按钮 */
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 1px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f4ff;
+        }
+
+        .btn-add {
+            background: white;
+            color: #56ab2f;
+            border: 1px solid #56ab2f;
+        }
+
+        .btn-add:hover {
+            background: #e8f5e9;
+        }
+
+        /* AI助手悬浮球 */
+        .ai-assistant-fab {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .ai-assistant-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            background: #ff4757;
+            border-radius: 50%;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 候选池侧边栏 */
+        .candidate-pool {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .pool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .pool-count {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        /* 趋势洞察 */
+        .insights-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .insight-item {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .insight-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .opportunities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 加载动画 */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>🎯 多平台机会雷达</h1>
+            <p>基于华为DSTE战略框架与MCDA多准则决策模型，为您智能发现和评估跨境电商机会</p>
+        </div>
+
+        <!-- 战略前置区 Pre-Step -->
+        <div class="pre-step-section">
+            <div class="section-title">
+                <span>📋 战略前置配置</span>
+                <span class="method-badge">DSTE-SP 战略规划</span>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>主营类目</label>
+                    <select id="category">
+                        <option value="electronics">3C电子</option>
+                        <option value="home">家居家具</option>
+                        <option value="pet">宠物用品</option>
+                        <option value="sports">运动户外</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>当前规模</label>
+                    <select id="scale">
+                        <option value="startup">初创 (&lt;50万美元)</option>
+                        <option value="growth" selected>成长 (50-500万美元)</option>
+                        <option value="mature">成熟 (&gt;500万美元)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>供应链优势</label>
+                    <select id="supply">
+                        <option value="factory">自有工厂</option>
+                        <option value="trade" selected>贸易商</option>
+                        <option value="dropship">代发货</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>战略目标 (DSTE-S)</label>
+                    <select id="strategic-goal">
+                        <option value="expand-product">扩充产品线</option>
+                        <option value="new-market" selected>拓展新市场</option>
+                        <option value="new-platform">进入新平台</option>
+                        <option value="upgrade">品类升级</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>预算范围</label>
+                    <select id="budget">
+                        <option value="low">&lt;5万美元</option>
+                        <option value="medium" selected>5-20万美元</option>
+                        <option value="high">&gt;20万美元</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>风险偏好</label>
+                    <select id="risk">
+                        <option value="conservative">保守</option>
+                        <option value="balanced" selected>平衡</option>
+                        <option value="aggressive">激进</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- 筛选与排序 -->
+        <div class="filter-section">
+            <div class="section-title">🔍 筛选与排序</div>
+            <div class="filter-tabs">
+                <button class="filter-tab active">全部平台</button>
+                <button class="filter-tab">Amazon</button>
+                <button class="filter-tab">TikTok Shop</button>
+                <button class="filter-tab">Temu</button>
+                <button class="filter-tab">Shopee</button>
+                <button class="filter-tab">Noon (中东)</button>
+            </div>
+            <div class="sort-controls">
+                <span class="sort-label">排序方式：</span>
+                <select>
+                    <option value="score">机会评分 (默认)</option>
+                    <option value="growth">增长率</option>
+                    <option value="profit">盈利潜力</option>
+                    <option value="fit">资源匹配度</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 候选池概览 -->
+        <div class="candidate-pool">
+            <div class="pool-header">
+                <div>
+                    <div class="section-title">📌 我的候选池</div>
+                    <p style="font-size: 13px; color: #666;">已加入对比的机会</p>
+                </div>
+                <div class="pool-count">3</div>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;">进入策略工作台对比分析 (M5) →</button>
+        </div>
+
+        <!-- 机会卡片网格 -->
+        <div class="opportunities-grid" id="opportunities-grid">
+            <!-- 卡片将通过JavaScript动态生成 -->
+        </div>
+
+        <!-- 市场趋势洞察 -->
+        <div class="insights-section">
+            <div class="section-title">📊 市场趋势洞察</div>
+            <div class="insight-item">
+                🔥 <strong>TikTok Shop 英国站</strong> 本周新增开放品类：美妆个护、小家电
+            </div>
+            <div class="insight-item">
+                📈 <strong>热门上升趋势</strong>：智能宠物用品在东南亚市场增速 +230% (近30天)
+            </div>
+            <div class="insight-item">
+                ⚠️ <strong>政策预警</strong>：欧盟将于2025年1月实施新电池指令，影响含电池产品
+            </div>
+        </div>
+
+        <!-- AI助手悬浮球 -->
+        <div class="ai-assistant-fab" onclick="toggleAIAssistant()">
+            <div class="notification-badge">3</div>
+            <span style="font-size: 28px;">🤖</span>
+        </div>
+    </div>
+
+    <script>
+        // 模拟机会数据
+        const opportunitiesData = [
+            {
+                id: 1,
+                productName: "智能宠物自动喂食器",
+                platform: "TikTok Shop",
+                market: "美国",
+                category: "宠物用品",
+
+                // MCDA评分数据
+                opportunityScore: 87,
+                scoreGrade: "A",
+                priorityRank: "P0",
+                confidenceIndex: 92,
+
+                // 5大维度评分
+                dimensions: {
+                    marketAttractiveness: 90,
+                    competitiveFeasibility: 78,
+                    profitPotential: 88,
+                    resourceFit: 85,
+                    riskControl: 82
+                },
+
+                // 核心指标
+                metrics: {
+                    marketSize: "$120M",
+                    growthRate: "+180%",
+                    competitionIntensity: "中等",
+                    avgPrice: "$45-$89",
+                    estimatedMargin: "35%",
+                    entryBarrier: "低"
+                },
+
+                // 亮点标签
+                highlights: [
+                    { type: "growth", text: "高增长 +180%" },
+                    { type: "competition", text: "中等竞争" },
+                    { type: "profit", text: "高利润 35%" }
+                ],
+
+                // 适配理由
+                fitReason: "匹配您的3C电子供应链优势，且TikTok内容驱动型流量适合展示产品功能",
+
+                // 风险提示
+                riskWarning: "需FCC认证，预计认证成本 $3000-5000"
+            },
+            {
+                id: 2,
+                productName: "便携式露营灯具套装",
+                platform: "Amazon",
+                market: "欧洲",
+                category: "户外运动",
+
+                opportunityScore: 82,
+                scoreGrade: "A",
+                priorityRank: "P1",
+                confidenceIndex: 88,
+
+                dimensions: {
+                    marketAttractiveness: 85,
+                    competitiveFeasibility: 72,
+                    profitPotential: 80,
+                    resourceFit: 90,
+                    riskControl: 78
+                },
+
+                metrics: {
+                    marketSize: "$85M",
+                    growthRate: "+65%",
+                    competitionIntensity: "中等",
+                    avgPrice: "$35-$75",
+                    estimatedMargin: "32%",
+                    entryBarrier: "中"
+                },
+
+                highlights: [
+                    { type: "growth", text: "稳定增长 +65%" },
+                    { type: "competition", text: "差异化空间大" },
+                    { type: "profit", text: "利润率 32%" }
+                ],
+
+                fitReason: "欧洲露营文化成熟，且您的供应链可快速响应定制需求",
+
+                riskWarning: "需CE认证，关税约15%，物流时效要求高"
+            },
+            {
+                id: 3,
+                productName: "儿童益智编程玩具",
+                platform: "Shopee",
+                market: "东南亚",
+                category: "玩具教育",
+
+                opportunityScore: 79,
+                scoreGrade: "B",
+                priorityRank: "P1",
+                confidenceIndex: 85,
+
+                dimensions: {
+                    marketAttractiveness: 88,
+                    competitiveFeasibility: 68,
+                    profitPotential: 75,
+                    resourceFit: 80,
+                    riskControl: 84
+                },
+
+                metrics: {
+                    marketSize: "$45M",
+                    growthRate: "+120%",
+                    competitionIntensity: "高",
+                    avgPrice: "$15-$40",
+                    estimatedMargin: "28%",
+                    entryBarrier: "低"
+                },
+
+                highlights: [
+                    { type: "growth", text: "高增长 +120%" },
+                    { type: "competition", text: "竞争激烈" },
+                    { type: "profit", text: "利润率 28%" }
+                ],
+
+                fitReason: "东南亚教育消费升级，低价策略可快速获取市场份额",
+
+                riskWarning: "竞争激烈，需持续投入广告维持流量"
+            },
+            {
+                id: 4,
+                productName: "智能家居温控器",
+                platform: "Noon",
+                market: "中东 (UAE)",
+                category: "智能家居",
+
+                opportunityScore: 85,
+                scoreGrade: "A",
+                priorityRank: "P0",
+                confidenceIndex: 80,
+
+                dimensions: {
+                    marketAttractiveness: 92,
+                    competitiveFeasibility: 85,
+                    profitPotential: 82,
+                    resourceFit: 75,
+                    riskControl: 72
+                },
+
+                metrics: {
+                    marketSize: "$38M",
+                    growthRate: "+200%",
+                    competitionIntensity: "低",
+                    avgPrice: "$80-$150",
+                    estimatedMargin: "40%",
+                    entryBarrier: "中"
+                },
+
+                highlights: [
+                    { type: "growth", text: "爆发增长 +200%" },
+                    { type: "competition", text: "蓝海市场" },
+                    { type: "profit", text: "高利润 40%" }
+                ],
+
+                fitReason: "中东高温气候刚需，且高客单价符合您的利润目标",
+
+                riskWarning: "需适配中东电压标准，清真认证可能需要，物流成本较高"
+            },
+            {
+                id: 5,
+                productName: "可折叠瑜伽垫套装",
+                platform: "Temu",
+                market: "美国",
+                category: "运动健身",
+
+                opportunityScore: 76,
+                scoreGrade: "B",
+                priorityRank: "P2",
+                confidenceIndex: 90,
+
+                dimensions: {
+                    marketAttractiveness: 80,
+                    competitiveFeasibility: 70,
+                    profitPotential: 72,
+                    resourceFit: 82,
+                    riskControl: 78
+                },
+
+                metrics: {
+                    marketSize: "$95M",
+                    growthRate: "+45%",
+                    competitionIntensity: "高",
+                    avgPrice: "$20-$45",
+                    estimatedMargin: "25%",
+                    entryBarrier: "低"
+                },
+
+                highlights: [
+                    { type: "growth", text: "稳定增长 +45%" },
+                    { type: "competition", text: "价格竞争激烈" },
+                    { type: "profit", text: "利润率 25%" }
+                ],
+
+                fitReason: "Temu平台流量大，适合快速走量，您的供应链成本优势明显",
+
+                riskWarning: "Temu平台抽佣高，需严控成本才能保证利润"
+            },
+            {
+                id: 6,
+                productName: "车载手机支架 (磁吸式)",
+                platform: "Amazon",
+                market: "日本",
+                category: "汽车配件",
+
+                opportunityScore: 73,
+                scoreGrade: "B",
+                priorityRank: "P2",
+                confidenceIndex: 87,
+
+                dimensions: {
+                    marketAttractiveness: 75,
+                    competitiveFeasibility: 65,
+                    profitPotential: 78,
+                    resourceFit: 85,
+                    riskControl: 70
+                },
+
+                metrics: {
+                    marketSize: "$28M",
+                    growthRate: "+35%",
+                    competitionIntensity: "高",
+                    avgPrice: "$12-$30",
+                    estimatedMargin: "30%",
+                    entryBarrier: "低"
+                },
+
+                highlights: [
+                    { type: "growth", text: "平稳增长 +35%" },
+                    { type: "competition", text: "红海市场" },
+                    { type: "profit", text: "利润率 30%" }
+                ],
+
+                fitReason: "日本市场对品质要求高但愿意溢价，适合您的品质定位",
+
+                riskWarning: "PSE认证必需，日语客服要求较高"
+            }
+        ];
+
+        // 渲染机会卡片
+        function renderOpportunities() {
+            const grid = document.getElementById('opportunities-grid');
+            grid.innerHTML = '';
+
+            opportunitiesData.forEach(opp => {
+                const card = createOpportunityCard(opp);
+                grid.appendChild(card);
+            });
+        }
+
+        // 创建单个机会卡片
+        function createOpportunityCard(data) {
+            const card = document.createElement('div');
+            card.className = 'opportunity-card';
+
+            const gradeClass = data.scoreGrade === 'A' ? 'grade-a' : data.scoreGrade === 'B' ? 'grade-b' : 'grade-c';
+            const priorityClass = `priority-${data.priorityRank.toLowerCase()}`;
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <div style="flex: 1;">
+                        <div class="product-name">${data.productName}</div>
+                        <div class="platform-market">
+                            <span class="platform-tag">${data.platform}</span>
+                            <span class="market-tag">${data.market}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="score-section">
+                    <div class="score-circle ${gradeClass}">
+                        <span>${data.opportunityScore}</span>
+                        <span class="score-label">${data.scoreGrade}级</span>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="priority-badge ${priorityClass}">优先级: ${data.priorityRank}</div>
+                        <div style="font-size: 12px; color: #888; margin-top: 5px;">
+                            信心指数: ${data.confidenceIndex}%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlights">
+                    ${data.highlights.map(h => `
+                        <span class="highlight-tag highlight-${h.type}">${h.text}</span>
+                    `).join('')}
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <span class="metric-label">市场规模</span>
+                        <span class="metric-value">${data.metrics.marketSize}</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">增长率</span>
+                        <span class="metric-value trend-up">↑ ${data.metrics.growthRate}</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">竞争强度</span>
+                        <span class="metric-value">${data.metrics.competitionIntensity}</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">利润率</span>
+                        <span class="metric-value">${data.metrics.estimatedMargin}</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">价格区间</span>
+                        <span class="metric-value">${data.metrics.avgPrice}</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">进入壁垒</span>
+                        <span class="metric-value">${data.metrics.entryBarrier}</span>
+                    </div>
+                </div>
+
+                <div class="mcda-dimensions">
+                    <div style="font-size: 12px; font-weight: 600; color: #667eea; margin-bottom: 10px;">
+                        MCDA 多维度评分
+                    </div>
+                    ${createDimensionBar('市场吸引力', data.dimensions.marketAttractiveness)}
+                    ${createDimensionBar('竞争可行性', data.dimensions.competitiveFeasibility)}
+                    ${createDimensionBar('盈利潜力', data.dimensions.profitPotential)}
+                    ${createDimensionBar('资源匹配度', data.dimensions.resourceFit)}
+                    ${createDimensionBar('风险可控性', data.dimensions.riskControl)}
+                </div>
+
+                <div class="fit-reason">
+                    <span class="icon">✓</span>
+                    <span>${data.fitReason}</span>
+                </div>
+
+                <div class="risk-warning">
+                    <span class="icon">⚠</span>
+                    <span>${data.riskWarning}</span>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn btn-primary" onclick="viewDetails(${data.id})">查看详情 →</button>
+                    <button class="btn btn-add" onclick="addToPool(${data.id})">加入候选池</button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // 创建维度评分条
+        function createDimensionBar(label, score) {
+            return `
+                <div class="dimension-item">
+                    <span class="dimension-label">${label}</span>
+                    <div class="dimension-bar-container">
+                        <div class="dimension-bar" style="width: ${score}%"></div>
+                    </div>
+                    <span class="dimension-score">${score}</span>
+                </div>
+            `;
+        }
+
+        // 查看详情
+        function viewDetails(id) {
+            alert(`即将进入产品 ID: ${id} 的详细分析页面 (M2 市场深度分析)`);
+        }
+
+        // 加入候选池
+        function addToPool(id) {
+            const opp = opportunitiesData.find(o => o.id === id);
+            alert(`已将 "${opp.productName}" 加入候选池！\n\n下一步可以进入 M5 策略工作台进行多产品对比分析。`);
+        }
+
+        // 切换AI助手
+        function toggleAIAssistant() {
+            alert('AI 战略助手对话框\n\n智能建议：\n1. 您关注的TikTok美国市场有3个高潜力机会\n2. 根据您的供应链优势，推荐优先考虑智能硬件类目\n3. 有2个机会的评分接近，需要我帮您详细对比吗？\n\n您也可以直接提问，例如：\n"哪些品类在东南亚增长最快？"\n"我有10万预算适合做什么？"');
+        }
+
+        // 页面加载时渲染
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOpportunities();
+        });
+
+        // 筛选标签切换
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                // 这里可以添加筛选逻辑
+            });
+        });
+    </script>
+</body>
+</html>
