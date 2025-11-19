@@ -1,94 +1,1021 @@
-<!-- Step 2: 品类洞察 - 占位符 -->
-<div class="step-placeholder">
-  <div class="step-placeholder__content">
-    <div class="step-placeholder__icon">🔍</div>
-    <h2 class="step-placeholder__title">Step 2: 品类洞察</h2>
-    <p class="step-placeholder__description">
-      深入分析品类内部结构，找到主流款式和增长机会点
-    </p>
-    <div class="step-placeholder__status">
-      <span class="badge badge-warning">开发中</span>
+<!-- Step 2: 品类洞察 - 五看洞察仪表板 -->
+<div class="step2-container">
+
+  <!-- ========== 1. 品类选择器 ========== -->
+  <div class="step2-header">
+    <div class="category-selector">
+      <label>选择品类组合:</label>
+      <select id="category-combo-select" class="form-select">
+        <!-- 从候选池动态加载 -->
+      </select>
     </div>
-    <div class="step-placeholder__features">
-      <h3>核心功能：</h3>
-      <ul>
-        <li>✅ 品类细分树（3级分类体系）</li>
-        <li>✅ 产品特征分类分析</li>
-        <li>✅ 主流款式洞察</li>
-        <li>✅ 品类洞察报告生成</li>
-      </ul>
+    <div class="analysis-actions">
+      <button class="btn btn-outline btn-sm" id="refresh-data-btn">
+         刷新数据
+      </button>
+      <button class="btn btn-primary btn-sm" id="export-wukan-btn">
+         导出五看分析
+      </button>
     </div>
-    <p class="step-placeholder__note">
-      💡 提示：请先完成 Step 1 的机会发现，将感兴趣的组合添加到候选池
-    </p>
   </div>
+
+  <!-- ========== 2. 子模块Tab导航 ========== -->
+  <ul class="sub-module-tabs" role="tablist">
+    <li class="active" data-module="wukan">
+      <div class="tab-content">
+        <span class="module-name">宏观市场</span>
+        <span class="module-method">五看三定法</span>
+      </div>
+    </li>
+    <span class="tab-arrow">→</span>
+    <li data-module="market-stp">
+      <div class="tab-content">
+        <span class="module-name">细分定位</span>
+        <span class="module-method">STP分析框架</span>
+      </div>
+    </li>
+    <span class="tab-arrow">→</span>
+    <li data-module="span-appeals">
+      <div class="tab-content">
+        <span class="module-name">组合分析</span>
+        <span class="module-method">SPAN & $APPEALS</span>
+      </div>
+    </li>
+    <span class="tab-arrow">→</span>
+    <li data-module="kano">
+      <div class="tab-content">
+        <span class="module-name">需求分级</span>
+        <span class="module-method">KANO分级法</span>
+      </div>
+    </li>
+    <span class="tab-arrow">→</span>
+    <li data-module="charter">
+      <div class="tab-content">
+        <span class="module-name">产品Charter</span>
+        <span class="module-method">IPD任务书</span>
+      </div>
+    </li>
+  </ul>
+
+  <!-- ========== 3. 五看洞察内容区 ========== -->
+  <div id="wukan-module" class="sub-module-content">
+
+    <!-- 五看Tab导航 -->
+    <ul class="wukan-tabs" role="tablist">
+      <li class="active" data-wukan-tab="industry">
+        <span class="tab-number">1</span>
+        <span class="tab-name">看行业</span>
+      </li>
+      <li data-wukan-tab="market">
+        <span class="tab-number">2</span>
+        <span class="tab-name">看市场</span>
+      </li>
+      <li data-wukan-tab="customer">
+        <span class="tab-number">3</span>
+        <span class="tab-name">看客户</span>
+      </li>
+      <li data-wukan-tab="competition">
+        <span class="tab-number">4</span>
+        <span class="tab-name">看竞争</span>
+      </li>
+      <li data-wukan-tab="resource">
+        <span class="tab-number">5</span>
+        <span class="tab-name">看自己</span>
+      </li>
+    </ul>
+
+    <!-- 五看内容面板 -->
+    <div class="wukan-panels">
+
+      <!-- ========== Panel 1: 看行业 ========== -->
+      <div id="industry-panel" class="wukan-panel active">
+        <!-- 核心指标 -->
+        <div class="panel-grid">
+          <div class="metric-card">
+            <div class="metric-label">市场规模 (GMV)</div>
+            <div class="metric-value" id="industry-gmv">--</div>
+            <div class="metric-trend positive" id="industry-cagr-trend">--</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">年增长率 (CAGR)</div>
+            <div class="metric-value" id="industry-cagr">--</div>
+            <div class="metric-trend" id="industry-period">2023-2028</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">成熟度</div>
+            <div class="metric-value" id="industry-maturity">--</div>
+            <div class="metric-trend" id="industry-maturity-desc">--</div>
+          </div>
+        </div>
+
+        <!-- 图表行 -->
+        <div class="chart-row">
+          <div class="chart-container">
+            <h4>品类结构分布</h4>
+            <div id="industry-structure-chart" style="height: 320px;"></div>
+          </div>
+          <div class="chart-container">
+            <h4>增长趋势 (2020-2028)</h4>
+            <div id="industry-growth-chart" style="height: 320px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== Panel 2: 看市场 ========== -->
+      <div id="market-panel" class="wukan-panel">
+        <!-- 子品类卡片网格 -->
+        <div class="subcategory-grid" id="subcategory-grid">
+          <!-- 动态填充 -->
+        </div>
+
+        <!-- 雷达图 -->
+        <div class="chart-container" style="margin-top: 24px;">
+          <h4>子品类五维雷达对比</h4>
+          <div class="radar-legend">
+            <span class="legend-item">市场规模</span>
+            <span class="legend-item">增长潜力</span>
+            <span class="legend-item">利润空间</span>
+            <span class="legend-item">竞争强度</span>
+            <span class="legend-item">进入难度</span>
+          </div>
+          <div id="market-radar-chart" style="height: 450px;"></div>
+        </div>
+      </div>
+
+      <!-- ========== Panel 3: 看客户 ========== -->
+      <div id="customer-panel" class="wukan-panel">
+        <h3 class="panel-title">客户画像 (Top 3 Segments)</h3>
+        <div class="persona-grid" id="persona-grid">
+          <!-- 动态填充 -->
+        </div>
+
+        <div class="pain-points-section" style="margin-top: 40px;">
+          <h3 class="panel-title">Top 5 客户痛点 (从50万条评论挖掘)</h3>
+          <div class="pain-point-list" id="pain-point-list">
+            <!-- 动态填充 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== Panel 4: 看竞争 ========== -->
+      <div id="competition-panel" class="wukan-panel">
+        <!-- 竞争指标 -->
+        <div class="panel-grid">
+          <div class="metric-card">
+            <div class="metric-label">CR5集中度</div>
+            <div class="metric-value" id="competition-cr5">--</div>
+            <div class="metric-trend" id="competition-level">--</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Top品牌</div>
+            <div class="metric-value" id="competition-top-brand">--</div>
+            <div class="metric-trend" id="competition-top-share">--</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">新品牌生存率</div>
+            <div class="metric-value" id="competition-survival">--</div>
+            <div class="metric-trend">12个月存活</div>
+          </div>
+        </div>
+
+        <!-- 图表行 -->
+        <div class="chart-row">
+          <div class="chart-container">
+            <h4>竞争格局雷达图</h4>
+            <div id="competition-radar-chart" style="height: 380px;"></div>
+          </div>
+          <div class="competitor-table-container">
+            <h4>Top 5 竞争对手</h4>
+            <table class="competitor-table">
+              <thead>
+                <tr>
+                  <th>排名</th>
+                  <th>品牌</th>
+                  <th>市场份额</th>
+                  <th>均价</th>
+                  <th>评分</th>
+                  <th>评论数</th>
+                </tr>
+              </thead>
+              <tbody id="competitor-table-body">
+                <!-- 动态填充 -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 竞争威胁分析 -->
+        <div class="threat-analysis-section" style="margin-top: 32px;">
+          <h4>竞争威胁分析</h4>
+          <div class="threat-cards">
+            <div class="threat-card white-label">
+              <div class="threat-header">
+                <span class="threat-icon">️</span>
+                <span class="threat-title">白牌威胁</span>
+                <span class="threat-level high" id="white-label-risk">--</span>
+              </div>
+              <div class="threat-content" id="white-label-desc">--</div>
+            </div>
+            <div class="threat-card substitutes">
+              <div class="threat-header">
+                <span class="threat-icon"></span>
+                <span class="threat-title">替代品</span>
+              </div>
+              <div class="threat-content" id="substitutes-list">--</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== Panel 5: 看自己 ========== -->
+      <div id="resource-panel" class="wukan-panel">
+        <h3 class="panel-title">资源匹配度评估</h3>
+
+        <!-- 综合得分卡 -->
+        <div class="resource-score-card">
+          <div class="score-circle">
+            <div class="score-value" id="resource-overall-score">--</div>
+            <div class="score-label">综合匹配度</div>
+          </div>
+          <div class="score-verdict">
+            <span class="verdict-icon" id="resource-verdict-icon">--</span>
+            <span class="verdict-text" id="resource-verdict">--</span>
+            <p class="verdict-desc" id="resource-recommendation">--</p>
+          </div>
+        </div>
+
+        <!-- 资源维度详情 -->
+        <div class="resource-dimensions" id="resource-dimensions">
+          <!-- 动态填充 -->
+        </div>
+
+        <!-- 资源匹配建议 -->
+        <div class="resource-suggestions-section" style="margin-top: 32px;">
+          <h4>资源匹配建议</h4>
+          <div class="suggestions-list" id="suggestions-list">
+            <!-- 动态填充 -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== 市场地图 & STP模块 ========== -->
+  <div id="market-stp-module" class="sub-module-content" style="display: none;">
+
+    <!-- 市场地图与STP左右分栏 -->
+    <div class="market-stp-layout">
+
+      <!-- 左侧: 市场地图 (40%) -->
+      <div class="market-map-section">
+        <!-- 细分品类树 -->
+        <div class="category-tree-card">
+          <h3 class="section-title">细分品类树</h3>
+          <div class="category-tree-container" id="category-tree-container">
+            <!-- 动态填充 -->
+          </div>
+        </div>
+
+        <h3 class="section-title">️ 数字化市场地图</h3>
+
+        <!-- 决策流映射 -->
+        <div class="map-card">
+          <h4>买家 vs. 使用者决策流</h4>
+          <div class="decision-flow">
+            <div class="flow-column buyer-column">
+              <div class="flow-header">
+                <span class="flow-icon"></span>
+                <span class="flow-label">购买者 (Pet Owner)</span>
+              </div>
+              <div class="flow-content">
+                <div class="flow-section">
+                  <strong>需求触发点:</strong>
+                  <div id="buyer-needs-list"></div>
+                </div>
+                <div class="flow-section">
+                  <strong>购买者关注:</strong>
+                  <div id="buyer-criteria-list"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-arrow">→</div>
+
+            <div class="flow-column pet-column">
+              <div class="flow-header">
+                <span class="flow-icon"></span>
+                <span class="flow-label">使用者 (Pet)</span>
+              </div>
+              <div class="flow-content">
+                <div class="flow-section">
+                  <strong>宠物本能反应:</strong>
+                  <div id="pet-criteria-list"></div>
+                </div>
+                <div class="flow-section insight-box">
+                  <span class="insight-icon"></span>
+                  <strong>关键洞察:</strong>
+                  <div id="decision-insights"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 渠道影响力 -->
+        <div class="map-card">
+          <h4>渠道影响力对比</h4>
+          <div class="channel-comparison" id="channel-comparison">
+            <!-- 动态填充 -->
+          </div>
+
+          <div class="lifecycle-strategy">
+            <h5>渠道生命周期策略</h5>
+            <div id="channel-lifecycle"></div>
+          </div>
+        </div>
+
+        <!-- 竞争生态 -->
+        <div class="map-card">
+          <h4>竞争生态层次</h4>
+          <div id="competitive-ecosystem"></div>
+        </div>
+      </div>
+
+      <!-- 右侧: STP聚焦 (60%) -->
+      <div class="stp-section">
+        <h3 class="section-title"> STP战略聚焦</h3>
+
+        <!-- S: 市场细分 -->
+        <div class="stp-card segmentation-card">
+          <div class="card-header">
+            <h4>Step 1:  市场细分 (Segmentation)</h4>
+          </div>
+
+          <!-- 细分市场表格 -->
+          <div class="segments-table-container">
+            <table class="segments-table">
+              <thead>
+                <tr>
+                  <th>细分市场</th>
+                  <th>市场规模</th>
+                  <th>增长率</th>
+                  <th>综合得分</th>
+                  <th>状态</th>
+                </tr>
+              </thead>
+              <tbody id="segments-table-body">
+                <!-- 动态填充 -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 选中细分市场详情 -->
+          <div class="selected-segment-detail" id="selected-segment-detail">
+            <!-- 动态填充 -->
+          </div>
+        </div>
+
+        <!-- T: 目标选择 -->
+        <div class="stp-card targeting-card">
+          <div class="card-header">
+            <h4>Step 2:  目标选择 (Targeting)</h4>
+          </div>
+
+          <div class="target-selection">
+            <div class="selection-reasons">
+              <h5>选择理由</h5>
+              <div id="selection-reasons-list"></div>
+            </div>
+
+            <div class="target-persona-card">
+              <h5>目标用户画像</h5>
+              <div id="target-persona-detail"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- P: 市场定位 -->
+        <div class="stp-card positioning-card">
+          <div class="card-header">
+            <h4>Step 3:  市场定位 (Positioning)</h4>
+          </div>
+
+          <div class="positioning-content">
+            <div class="tagline-box">
+              <h4>定位口号</h4>
+              <span id="positioning-tagline">--</span>
+            </div>
+
+            <div class="value-proposition">
+              <h5>价值主张:</h5>
+              <p id="value-proposition-text">--</p>
+            </div>
+
+            <div class="differentiators-grid" id="differentiators-grid">
+              <!-- 动态填充 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 品类角色 -->
+        <div class="stp-card category-role-card">
+          <div class="card-header">
+            <h4>Step 4:  品类角色定义 (Category Role)</h4>
+          </div>
+
+          <div class="category-roles-grid" id="category-roles-grid">
+            <!-- 动态填充 -->
+          </div>
+
+          <div class="role-strategy-box">
+            <strong>战略选择:</strong>
+            <p id="role-strategy-text">--</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="span-appeals-module" class="sub-module-content" style="display: none;">
+
+    <!-- 阶段指示器 -->
+    <div class="stage-indicator">
+      <div class="stage-item current" data-stage="1">
+        <span class="stage-number">①</span>
+        <span class="stage-name">SPAN矩阵评估</span>
+        <span class="stage-status">进行中</span>
+      </div>
+      <span class="stage-arrow">→</span>
+      <div class="stage-item" data-stage="2">
+        <span class="stage-number">②</span>
+        <span class="stage-name">$APPEALS对标</span>
+        <span class="stage-status">未开始</span>
+      </div>
+    </div>
+
+    <!-- SPAN & APPEALS 上下分栏布局 -->
+    <div class="span-appeals-layout">
+
+      <!-- ========== 阶段1: SPAN矩阵投资评估 ========== -->
+      <div class="stage-content" id="stage-1-content" style="display: block;">
+      <div class="span-section">
+        <div class="section-header">
+          <h2 class="section-title"> SPAN矩阵投资评估工作台</h2>
+          <p class="section-subtitle">Strategic Positioning Analysis (SPAN) Matrix</p>
+        </div>
+
+        <!-- SPAN内容区：上下布局 -->
+        <div class="span-content-vertical">
+
+          <!-- 第1部分：细分市场选择 -->
+          <div class="segments-selector">
+            <h3 class="panel-title">选择细分市场进行评估</h3>
+            <div id="span-segments-list" class="segments-list">
+              <!-- 动态生成细分市场卡片 -->
+            </div>
+          </div>
+
+          <!-- 第2部分：SPAN矩阵散点图 -->
+          <div class="span-matrix-chart-container">
+            <h3 class="panel-title">SPAN战略定位矩阵</h3>
+            <div id="span-matrix-chart" class="chart-wrapper" style="height: 500px;">
+              <!-- ECharts散点图 -->
+            </div>
+            <!-- 简化的图例说明 -->
+            <div class="matrix-legend-compact">
+              <span class="legend-note">象限说明: 明星(Y>60,X>60) · 金牛(Y<60,X>60) · 问题(Y>60,X<60) · 瘦狗(Y<60,X<60)</span>
+            </div>
+          </div>
+
+          <!-- 第3部分：当前选中细分市场的详细评估 -->
+          <div class="segment-evaluation" id="segment-evaluation-detail">
+            <!-- 动态生成评估详情 -->
+          </div>
+
+        </div>
+
+        <!-- 继续下一步按钮 -->
+        <div class="stage-footer">
+          <button class="btn btn-primary btn-next-stage" data-next-stage="2">
+            继续下一步：竞品对标分析 →
+          </button>
+        </div>
+
+      </div>
+      </div>
+
+      <!-- ========== 阶段2: $APPEALS差异化分析 ========== -->
+      <div class="stage-content" id="stage-2-content" style="display: none;">
+      <div class="appeals-section">
+        <div class="section-header">
+          <h2 class="section-title"> $APPEALS竞品对标工作台</h2>
+          <p class="section-subtitle">Competitive Benchmarking & Gap Analysis</p>
+        </div>
+
+        <!-- 竞品选择器 (卡片式) -->
+        <div class="competitors-selector-cards">
+          <label class="selector-label">选择对标竞品 (最多3个):</label>
+          <div id="competitors-cards-grid" class="competitors-cards-grid">
+            <!-- 动态生成竞品卡片 -->
+          </div>
+        </div>
+
+        <!-- $APPEALS内容区：上下布局 -->
+        <div class="appeals-content-vertical">
+
+          <!-- 第1部分：8维度对标表格 (竖向布局) -->
+          <div class="appeals-table-section">
+            <h3 class="panel-title">$APPEALS 8维度对标分析</h3>
+
+            <div class="dimensions-table-container">
+              <table class="dimensions-table-v" id="appeals-dimensions-table">
+                <thead>
+                  <tr>
+                    <th class="dim-name-col">维度</th>
+                    <th class="dim-weight-col">权重</th>
+                    <th class="dim-competitor-col" data-competitor="competitor1">竞品1</th>
+                    <th class="dim-competitor-col" data-competitor="competitor2">竞品2</th>
+                    <th class="dim-competitor-col" data-competitor="competitor3">竞品3</th>
+                    <th class="dim-ours-col">PawGenius<br>(我们)</th>
+                    <th class="dim-gap-col">差距分析</th>
+                  </tr>
+                </thead>
+                <tbody id="appeals-dimensions-tbody">
+                  <!-- 动态生成8个维度的评分行 -->
+                </tbody>
+                <tfoot>
+                  <tr class="total-row">
+                    <td colspan="2"><strong>加权综合得分</strong></td>
+                    <td id="score-competitor1" class="score-cell">-</td>
+                    <td id="score-competitor2" class="score-cell">-</td>
+                    <td id="score-competitor3" class="score-cell">-</td>
+                    <td id="score-ours" class="score-cell highlight">-</td>
+                    <td id="score-advantage" class="score-cell advantage">-</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <!-- 第2部分：价值曲线图 + 差距分析 (左右分栏) -->
+          <div class="appeals-bottom-grid">
+
+            <!-- 左侧：价值曲线雷达图 -->
+            <div class="value-curve-panel">
+              <h3 class="panel-title">$APPEALS 价值曲线对比图</h3>
+              <div id="appeals-radar-chart" class="chart-wrapper" style="height: 500px;">
+                <!-- ECharts雷达图 -->
+              </div>
+            </div>
+
+            <!-- 右侧：差距分析 + PRD摘要 -->
+            <div class="gap-analysis-panel">
+
+              <!-- 差距战略矩阵 -->
+              <div class="gap-analysis-container">
+                <h3 class="panel-title"> 差距战略矩阵</h3>
+                <div class="gap-matrix-grid">
+
+                  <div class="gap-card fill-gap">
+                    <div class="gap-card-header">
+                      <h4 class="gap-card-title">填平差距</h4>
+                      <span class="gap-subtitle">Gap Closing</span>
+                    </div>
+                    <div id="fill-gap-list" class="gap-items-list">
+                      <!-- 动态生成 -->
+                    </div>
+                  </div>
+
+                  <div class="gap-card build-advantage">
+                    <div class="gap-card-header">
+                      <h4 class="gap-card-title">建立优势</h4>
+                      <span class="gap-subtitle">Gap Opening</span>
+                    </div>
+                    <div id="build-advantage-list" class="gap-items-list">
+                      <!-- 动态生成 -->
+                    </div>
+                  </div>
+
+                  <div class="gap-card maintain-parity">
+                    <div class="gap-card-header">
+                      <h4 class="gap-card-title">保持持平</h4>
+                      <span class="gap-subtitle">Parity</span>
+                    </div>
+                    <div id="maintain-parity-list" class="gap-items-list">
+                      <!-- 动态生成 -->
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Phase 4: KANO需求分级引擎 (Module 2.6) -->
+  <div id="kano-module" class="sub-module-content" style="display: none;">
+
+    <!-- 模块标题 -->
+    <div class="kano-header">
+      <div class="header-left">
+        <h3> KANO需求分级引擎</h3>
+        <p class="module-desc">基于Better-Worse系数分析法, 将产品特征分类为4个KANO类型, 优化MVP特征集与成本结构</p>
+      </div>
+      <div class="header-right">
+        <div class="kano-metadata">
+          <div class="metadata-item">
+            <span class="label">样本量</span>
+            <span class="value" id="kano-sample-size">-</span>
+          </div>
+          <div class="metadata-item">
+            <span class="label">分析方法</span>
+            <span class="value" id="kano-methodology">-</span>
+          </div>
+          <div class="metadata-item">
+            <span class="label">置信度</span>
+            <span class="value confidence" id="kano-confidence">-</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 顶部: KANO分类统计卡片 -->
+    <div class="kano-summary" id="kano-summary-cards">
+      <!-- Must-be 基本型 -->
+      <div class="kano-category-card must-be">
+        <div class="category-header">
+          <span class="category-icon"></span>
+          <span class="category-name">Must-be (基本型)</span>
+        </div>
+        <div class="category-stats">
+          <div class="stat-item">
+            <span class="stat-value" id="must-be-count">-</span>
+            <span class="stat-label">个特征</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value cost" id="must-be-cost">-</span>
+            <span class="stat-label">成本占比</span>
+          </div>
+        </div>
+        <p class="category-desc" id="must-be-desc">-</p>
+      </div>
+
+      <!-- One-dimensional 期望型 -->
+      <div class="kano-category-card one-dimensional">
+        <div class="category-header">
+          <span class="category-icon"></span>
+          <span class="category-name">One-dimensional (期望型)</span>
+        </div>
+        <div class="category-stats">
+          <div class="stat-item">
+            <span class="stat-value" id="one-dimensional-count">-</span>
+            <span class="stat-label">个特征</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value cost" id="one-dimensional-cost">-</span>
+            <span class="stat-label">成本占比</span>
+          </div>
+        </div>
+        <p class="category-desc" id="one-dimensional-desc">-</p>
+      </div>
+
+      <!-- Attractive 兴奋型 -->
+      <div class="kano-category-card attractive">
+        <div class="category-header">
+          <span class="category-icon"></span>
+          <span class="category-name">Attractive (兴奋型)</span>
+        </div>
+        <div class="category-stats">
+          <div class="stat-item">
+            <span class="stat-value" id="attractive-count">-</span>
+            <span class="stat-label">个特征</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value cost" id="attractive-cost">-</span>
+            <span class="stat-label">成本占比</span>
+          </div>
+        </div>
+        <p class="category-desc" id="attractive-desc">-</p>
+      </div>
+
+      <!-- Indifferent 无差异 -->
+      <div class="kano-category-card indifferent">
+        <div class="category-header">
+          <span class="category-icon"></span>
+          <span class="category-name">Indifferent (无差异)</span>
+        </div>
+        <div class="category-stats">
+          <div class="stat-item">
+            <span class="stat-value deleted" id="indifferent-count">-</span>
+            <span class="stat-label">个特征 (已删除)</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value saved" id="indifferent-saved">-</span>
+            <span class="stat-label">节省成本</span>
+          </div>
+        </div>
+        <p class="category-desc" id="indifferent-desc">-</p>
+      </div>
+    </div>
+
+    <!-- 中间: 特征列表 (按KANO分类展示) -->
+    <div class="kano-features-container">
+
+      <!-- Must-be 基本型特征 -->
+      <div class="kano-category-section must-be" data-category="must-be">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="category-icon"></span>
+            <h4>Must-be (基本型)</h4>
+            <span class="feature-count" id="must-be-feature-count">-</span>
+          </div>
+          <div class="section-tooltip">
+            <span class="tooltip-icon">ℹ️</span>
+            <div class="tooltip-content">
+              <p><strong>定义:</strong> 缺失会导致极度不满, 具备仅能达到中性</p>
+              <p><strong>公式:</strong> Better系数 &lt; 0.3 且 Worse系数 &gt; 0.5</p>
+              <p><strong>策略:</strong> 必须100%保留, 确保底线满意度</p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-cards-grid" id="must-be-features">
+          <!-- 由JS动态渲染 -->
+        </div>
+      </div>
+
+      <!-- One-dimensional 期望型特征 -->
+      <div class="kano-category-section one-dimensional" data-category="one-dimensional">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="category-icon"></span>
+            <h4>One-dimensional (期望型)</h4>
+            <span class="feature-count" id="one-dimensional-feature-count">-</span>
+          </div>
+          <div class="section-tooltip">
+            <span class="tooltip-icon">ℹ️</span>
+            <div class="tooltip-content">
+              <p><strong>定义:</strong> 有则加分, 无则扣分, 满意度线性相关</p>
+              <p><strong>公式:</strong> Better系数 &gt; 0.3 且 Worse系数 &gt; 0.3</p>
+              <p><strong>策略:</strong> 根据成本/收益分析, 优先保留高ROI特征</p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-cards-grid" id="one-dimensional-features">
+          <!-- 由JS动态渲染 -->
+        </div>
+      </div>
+
+      <!-- Attractive 兴奋型特征 -->
+      <div class="kano-category-section attractive" data-category="attractive">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="category-icon"></span>
+            <h4>Attractive (兴奋型)</h4>
+            <span class="feature-count" id="attractive-feature-count">-</span>
+          </div>
+          <div class="section-tooltip">
+            <span class="tooltip-icon">ℹ️</span>
+            <div class="tooltip-content">
+              <p><strong>定义:</strong> 超出预期的惊喜, 有则大幅加分, 无则不扣分</p>
+              <p><strong>公式:</strong> Better系数 &gt; 0.5 且 Worse系数 &lt; 0.3</p>
+              <p><strong>策略:</strong> 差异化亮点, 形成竞争优势, 建议保留</p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-cards-grid" id="attractive-features">
+          <!-- 由JS动态渲染 -->
+        </div>
+      </div>
+
+      <!-- Indifferent 无差异特征 (已删除) -->
+      <div class="kano-category-section indifferent" data-category="indifferent">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="category-icon"></span>
+            <h4>Indifferent (无差异)</h4>
+            <span class="feature-count deleted" id="indifferent-feature-count">-</span>
+          </div>
+          <div class="section-tooltip">
+            <span class="tooltip-icon">ℹ️</span>
+            <div class="tooltip-content">
+              <p><strong>定义:</strong> 有无皆可, 用户无感, 删除不影响满意度</p>
+              <p><strong>公式:</strong> Better系数 &lt; 0.3 且 Worse系数 &lt; 0.3</p>
+              <p><strong>策略:</strong> 建议删除, 优化成本结构</p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-cards-grid deleted-features" id="indifferent-features">
+          <!-- 由JS动态渲染 -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部: MVP总结卡片 -->
+    <div class="mvp-summary-card">
+      <div class="mvp-header">
+        <h4> MVP V1.0 总结</h4>
+        <div class="mvp-version-badge" id="mvp-version">-</div>
+      </div>
+
+      <!-- MVP关键指标 -->
+      <div class="mvp-metrics-grid">
+        <div class="metric-card">
+          <span class="metric-icon"></span>
+          <div class="metric-content">
+            <span class="metric-label">保留特征</span>
+            <span class="metric-value" id="mvp-retained-features">-</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-icon">️</span>
+          <div class="metric-content">
+            <span class="metric-label">删除特征</span>
+            <span class="metric-value" id="mvp-deleted-features">-</span>
+          </div>
+        </div>
+        <div class="metric-card highlight">
+          <span class="metric-icon"></span>
+          <div class="metric-content">
+            <span class="metric-label">最终COGS</span>
+            <span class="metric-value cost" id="mvp-final-cogs">-</span>
+          </div>
+        </div>
+        <div class="metric-card success">
+          <span class="metric-icon"></span>
+          <div class="metric-content">
+            <span class="metric-label">成本优化</span>
+            <span class="metric-value saved" id="mvp-cost-optimization">-</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MVP优化建议 -->
+      <div class="mvp-recommendations">
+        <h5> 优化建议</h5>
+        <div class="recommendations-list" id="mvp-recommendations-list">
+          <!-- 由JS动态渲染 -->
+        </div>
+      </div>
+
+      <!-- 下一步行动 -->
+      <div class="mvp-next-step">
+        <span class="next-step-icon"></span>
+        <p id="mvp-next-step-text">-</p>
+      </div>
+    </div>
+
+    <!-- 特征详情面板 (模态框) -->
+    <div class="feature-detail-modal" id="feature-detail-modal" style="display: none;">
+      <div class="modal-overlay" id="feature-modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="feature-detail-title">-</h4>
+          <button class="btn-close-modal" id="btn-close-feature-modal"></button>
+        </div>
+        <div class="modal-body" id="feature-detail-body">
+          <!-- 由JS动态渲染 -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Phase 5: 数字化Charter生成器 (Module 2.7) -->
+  <div id="charter-module" class="sub-module-content" style="display: none;">
+
+    <!-- Charter头部 -->
+    <div class="charter-header">
+      <div class="header-content">
+        <h2> 产品开发任务书 (Product Charter)</h2>
+        <p class="product-title" id="charter-product-name">-</p>
+      </div>
+      <div class="header-metadata">
+        <div class="metadata-badge">
+          <span class="label">版本</span>
+          <span class="value" id="charter-version">-</span>
+        </div>
+        <div class="metadata-badge">
+          <span class="label">日期</span>
+          <span class="value" id="charter-date">-</span>
+        </div>
+        <div class="metadata-badge status">
+          <span class="label">状态</span>
+          <span class="value approved" id="charter-status">-</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 数据源状态检查 -->
+    <div class="data-sources-status">
+      <h4> 数据源: 自动汇总Module 2.1-2.6分析结果</h4>
+      <div class="sources-grid" id="data-sources-grid">
+        <!-- 由JS动态渲染 -->
+      </div>
+    </div>
+
+    <!-- Charter主体:左右分栏 -->
+    <div class="charter-layout">
+
+      <!-- 左侧: 章节导航 -->
+      <div class="charter-navigation">
+        <h4>Charter大纲</h4>
+        <nav class="chapter-nav" id="chapter-nav">
+          <a href="#chapter-1" class="chapter-link active" data-chapter="1">
+            <span class="chapter-number">I</span>
+            <span class="chapter-title">Executive Summary</span>
+          </a>
+          <a href="#chapter-2" class="chapter-link" data-chapter="2">
+            <span class="chapter-number">II</span>
+            <span class="chapter-title">Market Opportunity</span>
+          </a>
+          <a href="#chapter-3" class="chapter-link" data-chapter="3">
+            <span class="chapter-number">III</span>
+            <span class="chapter-title">Strategic Positioning</span>
+          </a>
+          <a href="#chapter-4" class="chapter-link" data-chapter="4">
+            <span class="chapter-number">IV</span>
+            <span class="chapter-title">Competitive Landscape</span>
+          </a>
+          <a href="#chapter-5" class="chapter-link" data-chapter="5">
+            <span class="chapter-number">V</span>
+            <span class="chapter-title">Product Definition</span>
+          </a>
+          <a href="#chapter-6" class="chapter-link" data-chapter="6">
+            <span class="chapter-number">VI</span>
+            <span class="charter-title">Financial Projections</span>
+          </a>
+          <a href="#chapter-7" class="chapter-link" data-chapter="7">
+            <span class="chapter-number">VII</span>
+            <span class="chapter-title">Risk Analysis</span>
+          </a>
+          <a href="#chapter-8" class="chapter-link" data-chapter="8">
+            <span class="chapter-number">VIII</span>
+            <span class="chapter-title">Go-to-Market Strategy</span>
+          </a>
+          <a href="#chapter-9" class="chapter-link" data-chapter="9">
+            <span class="chapter-number">IX</span>
+            <span class="chapter-title">Approval Decision</span>
+          </a>
+        </nav>
+
+        <!-- 操作按钮 -->
+        <div class="charter-actions">
+          <button class="btn-charter-action" id="btn-export-pdf">
+            <span></span>
+            <span>导出PDF</span>
+          </button>
+          <button class="btn-charter-action" id="btn-print-charter">
+            <span>️</span>
+            <span>打印</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 右侧: Charter文档内容 -->
+      <div class="charter-document" id="charter-document">
+        <!-- 章节内容由JS动态渲染 -->
+      </div>
+
+    </div>
+
+    <!-- 底部: AI决策评审结果 -->
+    <div class="approval-footer">
+      <div class="approval-content">
+        <div class="approval-score">
+          <div class="score-circle" id="approval-score-circle">
+            <span class="score-number" id="approval-score-number">-</span>
+            <span class="score-total">/100</span>
+          </div>
+          <p class="score-label">综合得分</p>
+        </div>
+        <div class="approval-decision">
+          <div class="decision-badge approved" id="approval-decision-badge">
+            <span class="decision-icon"></span>
+            <span class="decision-text" id="approval-decision-text">APPROVED</span>
+          </div>
+          <p class="decision-reasoning" id="approval-reasoning">-</p>
+        </div>
+        <div class="approval-action">
+          <button class="btn-generate-charter" id="btn-generate-charter">
+            <span></span>
+            <span>生成最终Charter文档</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
-
-<style>
-.step-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 600px;
-  padding: var(--spacing-xl);
-}
-
-.step-placeholder__content {
-  text-align: center;
-  max-width: 600px;
-}
-
-.step-placeholder__icon {
-  font-size: 80px;
-  margin-bottom: var(--spacing-lg);
-  opacity: 0.8;
-}
-
-.step-placeholder__title {
-  font-size: var(--font-size-xxl);
-  margin-bottom: var(--spacing-md);
-  color: var(--text-primary);
-}
-
-.step-placeholder__description {
-  font-size: var(--font-size-lg);
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-lg);
-  line-height: var(--line-height-relaxed);
-}
-
-.step-placeholder__status {
-  margin-bottom: var(--spacing-xl);
-}
-
-.step-placeholder__features {
-  background-color: var(--bg-secondary);
-  padding: var(--spacing-lg);
-  border-radius: var(--border-radius-lg);
-  margin-bottom: var(--spacing-lg);
-  text-align: left;
-}
-
-.step-placeholder__features h3 {
-  font-size: var(--font-size-lg);
-  margin-bottom: var(--spacing-md);
-  color: var(--text-primary);
-}
-
-.step-placeholder__features ul {
-  list-style: none;
-  padding: 0;
-}
-
-.step-placeholder__features li {
-  padding: var(--spacing-sm) 0;
-  font-size: var(--font-size-md);
-  color: var(--text-secondary);
-}
-
-.step-placeholder__note {
-  font-size: var(--font-size-sm);
-  color: var(--text-muted);
-  font-style: italic;
-}
-</style>
