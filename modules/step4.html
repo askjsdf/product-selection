@@ -1,27 +1,1167 @@
-<!-- Step 4: 利润分析 - 占位符 -->
-<div class="step-placeholder">
-  <div class="step-placeholder__content">
-    <div class="step-placeholder__icon">💰</div>
-    <h2 class="step-placeholder__title">Step 4: 利润分析与可行性验证</h2>
-    <p class="step-placeholder__description">
-      使用 GECOM 全景成本模型进行深度利润测算和供应链验证
-    </p>
-    <div class="step-placeholder__status">
-      <span class="badge badge-warning">开发中</span>
+<!-- Step 4: 成本核算与利润验证 -->
+<div id="step4-container" class="step-container">
+  <!-- 头部标题 -->
+  <div class="step-header mb-4">
+    <h2 class="step-title">Step 4: 成本核算与利润验证</h2>
+    <p class="step-subtitle text-muted">基于 GECOM 全球电商成本优化方法论 (M1-M8)</p>
+  </div>
+
+  <!-- Tab 导航 -->
+  <ul class="nav nav-tabs mb-4" id="step4Tabs" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link active" id="capex-tab" data-bs-toggle="tab" data-bs-target="#capex-panel" type="button">
+        启动成本 (CAPEX)
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="opex-tab" data-bs-toggle="tab" data-bs-target="#opex-panel" type="button">
+        运营成本 (OPEX)
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="profit-tab" data-bs-toggle="tab" data-bs-target="#profit-panel" type="button">
+        利润计算
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="feasibility-tab" data-bs-toggle="tab" data-bs-target="#feasibility-panel" type="button">
+        可行性报告
+      </button>
+    </li>
+  </ul>
+
+  <!-- Tab 内容区域 -->
+  <div class="tab-content" id="step4TabContent">
+
+    <!-- ========================================
+         Tab 1: 启动成本 (CAPEX)
+         ======================================== -->
+    <div class="tab-pane fade show active" id="capex-panel" role="tabpanel">
+
+      <!-- M1: 市场准入与主体合规 -->
+      <div class="gecom-module-card">
+        <div class="module-header">
+          <h4>M1: 市场准入与主体合规</h4>
+          <span class="data-tier-badge">数据等级: Tier 2</span>
+        </div>
+
+        <div class="module-body">
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">目标市场</label>
+              <select class="form-select" id="m1-market">
+                <option value="US" selected>美国</option>
+                <option value="UK">英国</option>
+                <option value="DE">德国</option>
+                <option value="JP">日本</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m1-legal-entity" checked>
+              <label for="m1-legal-entity">法律主体设立 (LLC/GmbH)</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="3500" min="0" step="100">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $2,000 - $5,000
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m1-license" checked>
+              <label for="m1-license">商业许可证</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="1000" min="0" step="100">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $500 - $2,000
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m1-tax-registration" checked>
+              <label for="m1-tax-registration">税务登记 (EIN/VAT)</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="500" min="0" step="100">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $0 - $1,000
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m1-bank-account" checked>
+              <label for="m1-bank-account">银行账户开设</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="250" min="0" step="50">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $0 - $500
+            </div>
+          </div>
+        </div>
+
+        <div class="module-footer">
+          <div class="module-subtotal">
+            <span>M1 小计:</span>
+            <strong id="m1-subtotal">$5,250</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- M2: 渠道建设与技术架构 -->
+      <div class="gecom-module-card">
+        <div class="module-header">
+          <h4>M2: 渠道建设与技术架构</h4>
+          <span class="data-tier-badge">数据等级: Tier 2</span>
+        </div>
+
+        <div class="module-body">
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">销售模式</label>
+              <select class="form-select" id="m2-sales-model">
+                <option value="DTC">DTC 独立站</option>
+                <option value="FBA" selected>Amazon FBA</option>
+                <option value="platform">平台分销</option>
+                <option value="hybrid">混合模式</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m2-website-dev">
+              <label for="m2-website-dev">DTC 官网开发</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="0" min="0" step="1000">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $5,000 - $20,000
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m2-platform-setup" checked>
+              <label for="m2-platform-setup">平台店铺开设</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="500" min="0" step="100">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $0 - $500
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m2-erp-system" checked>
+              <label for="m2-erp-system">ERP/WMS 系统</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="5000" min="0" step="500">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $2,000 - $10,000
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m2-payment-gateway" checked>
+              <label for="m2-payment-gateway">支付网关集成</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="1000" min="0" step="100">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $500 - $2,000
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m2-hosting" checked>
+              <label for="m2-hosting">域名与服务器</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="500" min="0" step="100">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $200 - $1,000
+            </div>
+          </div>
+        </div>
+
+        <div class="module-footer">
+          <div class="module-subtotal">
+            <span>M2 小计:</span>
+            <strong id="m2-subtotal">$7,000</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- M3: 供应链准备与产品合规 -->
+      <div class="gecom-module-card">
+        <div class="module-header">
+          <h4>M3: 供应链准备与产品合规</h4>
+          <span class="data-tier-badge">数据等级: Tier 1</span>
+        </div>
+
+        <div class="module-body">
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">产品类目</label>
+              <select class="form-select" id="m3-category">
+                <option value="pet" selected>宠物用品</option>
+                <option value="vape">电子烟</option>
+                <option value="food">食品饮料</option>
+                <option value="general">通用类目</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m3-certification" checked>
+              <label for="m3-certification">FDA/CE/UKCA 认证</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="5000" min="0" step="500">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $3,000 - $15,000
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m3-testing" checked>
+              <label for="m3-testing">产品测试与检验</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="2000" min="0" step="500">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $1,000 - $5,000
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m3-packaging" checked>
+              <label for="m3-packaging">包装设计与模具</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="3000" min="0" step="500">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $2,000 - $8,000
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m3-inventory" checked>
+              <label for="m3-inventory">首批库存采购</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="20000" min="0" step="1000">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $10,000 - $50,000
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <div class="cost-item-checkbox">
+              <input type="checkbox" id="m3-warehouse" checked>
+              <label for="m3-warehouse">海外仓建设</label>
+            </div>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="10000" min="0" step="1000">
+            </div>
+            <div class="cost-item-range text-muted">
+              参考范围: $5,000 - $20,000
+            </div>
+          </div>
+        </div>
+
+        <div class="module-footer">
+          <div class="module-subtotal">
+            <span>M3 小计:</span>
+            <strong id="m3-subtotal">$40,000</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAPEX 汇总卡片 -->
+      <div class="summary-card capex-summary">
+        <h4>启动成本总计 (Phase 0-1)</h4>
+        <div class="summary-breakdown">
+          <div class="summary-item">
+            <span>M1: 市场准入与主体合规</span>
+            <strong id="capex-m1-display">$5,250</strong>
+          </div>
+          <div class="summary-item">
+            <span>M2: 渠道建设与技术架构</span>
+            <strong id="capex-m2-display">$7,000</strong>
+          </div>
+          <div class="summary-item">
+            <span>M3: 供应链准备与产品合规</span>
+            <strong id="capex-m3-display">$40,000</strong>
+          </div>
+        </div>
+        <hr>
+        <div class="summary-total">
+          <span>CAPEX 总计:</span>
+          <strong id="total-capex" class="text-primary">$52,250</strong>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-outline-info btn-sm">
+            <i class="bi bi-pie-chart"></i> 查看成本分布图
+          </button>
+        </div>
+      </div>
+
     </div>
-    <div class="step-placeholder__features">
-      <h3>核心功能：</h3>
-      <ul>
-        <li>✅ GECOM 全成本模型（COGS + 物流 + 平台 + 广告）</li>
-        <li>✅ 多场景利润建模（乐观/基准/悲观）</li>
-        <li>✅ 供应链验证（MOQ、认证、交期）</li>
-        <li>✅ 产业带信息（5大产区）</li>
-        <li>✅ 物流方案对比（空运 vs 海运）</li>
-        <li>✅ 精选产品清单（1-3个产品）</li>
-      </ul>
+
+    <!-- ========================================
+         Tab 2: 运营成本 (OPEX)
+         ======================================== -->
+    <div class="tab-pane fade" id="opex-panel" role="tabpanel">
+
+      <!-- M4: 商品成本与税费 -->
+      <div class="gecom-module-card">
+        <div class="module-header">
+          <h4>M4: 商品成本与税费</h4>
+          <span class="badge bg-info">月度成本</span>
+        </div>
+
+        <div class="module-body">
+          <div class="row mb-4">
+            <div class="col-md-4">
+              <label class="form-label">月销售目标 (件数)</label>
+              <input type="number" class="form-control" id="m4-units" value="1000" min="0">
+              <small class="text-muted">自动从 Step 3 读取，可手动调整</small>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">COGS (单位成本)</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="15.00" step="0.1">
+              <span class="input-unit">/ 件</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">头程物流 (中国→目标市场)</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="3.50" step="0.1">
+              <span class="input-unit">/ 件</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">进口关税 (HS Code: <span class="text-info">4201</span>)</label>
+            <div class="cost-item-input">
+              <input type="number" class="form-control" value="4.5" step="0.1">
+              <span class="input-unit">%</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">销售税 (VAT/GST/Sales Tax)</label>
+            <div class="cost-item-input">
+              <input type="number" class="form-control" value="7.0" step="0.1">
+              <span class="input-unit">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-footer">
+          <div class="module-calc-detail mb-2">
+            <div>单件总成本: <strong id="m4-unit-cost" class="text-info">$19.70</strong></div>
+            <div>月销量: <strong id="m4-monthly-units">1,000 件</strong></div>
+          </div>
+          <div class="module-subtotal">
+            <span>M4 月度小计:</span>
+            <strong id="m4-subtotal">$19,700</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- M5: 履约执行与物流 -->
+      <div class="gecom-module-card">
+        <div class="module-header">
+          <h4>M5: 履约执行与物流</h4>
+          <span class="badge bg-info">月度成本</span>
+        </div>
+
+        <div class="module-body">
+          <div class="row mb-4">
+            <div class="col-md-4">
+              <label class="form-label">物流模式</label>
+              <select class="form-select" id="m5-model">
+                <option value="fba" selected>Amazon FBA</option>
+                <option value="self">自发货</option>
+                <option value="3pl">3PL 海外仓</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">仓储费 (Warehouse)</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="0.75" step="0.05">
+              <span class="input-unit">/ 件</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">FBA 配送费</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="3.50" step="0.1">
+              <span class="input-unit">/ 件</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">退货处理费</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="2.00" step="0.1">
+              <span class="input-unit">/ 件</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">退货率</label>
+            <div class="cost-item-input">
+              <input type="number" class="form-control" value="5.0" step="0.5">
+              <span class="input-unit">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-footer">
+          <div class="module-subtotal">
+            <span>M5 月度小计:</span>
+            <strong id="m5-subtotal">$4,350</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- M6: 营销与获客 -->
+      <div class="gecom-module-card">
+        <div class="module-header">
+          <h4>M6: 营销与获客</h4>
+          <span class="badge bg-info">月度成本</span>
+        </div>
+
+        <div class="module-body">
+          <div class="alert alert-info mb-3">
+            <small><i class="bi bi-info-circle"></i> 自动从 Step 3 流量策略读取</small>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">PPC 广告预算</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="5000" step="100">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">网红营销 (KOL)</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="2000" step="100">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">社交媒体广告</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="1500" step="100">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">联盟营销 (Affiliate)</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="500" step="100">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-footer">
+          <div class="module-calc-detail mb-2">
+            <div>CAC (获客成本): <strong id="m6-cac" class="text-info">$9.00</strong> / 客户</div>
+          </div>
+          <div class="module-subtotal">
+            <span>M6 月度小计:</span>
+            <strong id="m6-subtotal">$9,000</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- M7: 渠道使用与交易 -->
+      <div class="gecom-module-card">
+        <div class="module-header">
+          <h4>M7: 渠道使用与交易</h4>
+          <span class="badge bg-info">月度成本</span>
+        </div>
+
+        <div class="module-body">
+          <div class="row mb-4">
+            <div class="col-md-4">
+              <label class="form-label">销售渠道</label>
+              <select class="form-select" id="m7-channel">
+                <option value="amazon" selected>Amazon</option>
+                <option value="ebay">eBay</option>
+                <option value="shopify">Shopify</option>
+                <option value="independent">独立站</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">平台佣金</label>
+            <div class="cost-item-input">
+              <input type="number" class="form-control" value="15.0" step="0.5">
+              <span class="input-unit">% of sales</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">支付处理费</label>
+            <div class="cost-item-input">
+              <input type="number" class="form-control" value="2.9" step="0.1">
+              <span class="input-unit">% + $0.30</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">SaaS 工具订阅</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="200" step="50">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">数据分析工具</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="100" step="50">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-footer">
+          <div class="module-subtotal">
+            <span>M7 月度小计:</span>
+            <strong id="m7-subtotal">$6,800</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- M8: 综合运营与维护 -->
+      <div class="gecom-module-card">
+        <div class="module-header">
+          <h4>M8: 综合运营与维护</h4>
+          <span class="badge bg-info">月度成本</span>
+        </div>
+
+        <div class="module-body">
+          <div class="cost-item-row">
+            <label class="flex-grow-1">运营团队 (2人)</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="8000" step="500">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">客服外包</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="1500" step="100">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">法务与财务服务</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="1000" step="100">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">合规维护 (年度审核)</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="200" step="50">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+
+          <div class="cost-item-row">
+            <label class="flex-grow-1">办公与软件费用</label>
+            <div class="cost-item-input">
+              <span class="input-prefix">$</span>
+              <input type="number" class="form-control" value="500" step="100">
+              <span class="input-unit">/ 月</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-footer">
+          <div class="module-subtotal">
+            <span>M8 月度小计:</span>
+            <strong id="m8-subtotal">$11,200</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPEX 汇总卡片 -->
+      <div class="summary-card opex-summary">
+        <h4>运营成本总计 (Phase 1-N 月度)</h4>
+        <div class="summary-breakdown">
+          <div class="summary-item">
+            <span>M4: 商品成本与税费</span>
+            <strong id="opex-m4-display">$19,700</strong>
+          </div>
+          <div class="summary-item">
+            <span>M5: 履约执行与物流</span>
+            <strong id="opex-m5-display">$4,350</strong>
+          </div>
+          <div class="summary-item">
+            <span>M6: 营销与获客</span>
+            <strong id="opex-m6-display">$9,000</strong>
+          </div>
+          <div class="summary-item">
+            <span>M7: 渠道使用与交易</span>
+            <strong id="opex-m7-display">$6,800</strong>
+          </div>
+          <div class="summary-item">
+            <span>M8: 综合运营与维护</span>
+            <strong id="opex-m8-display">$11,200</strong>
+          </div>
+        </div>
+        <hr>
+        <div class="summary-total">
+          <span>月度 OPEX 总计:</span>
+          <strong id="total-opex" class="text-warning">$51,050</strong>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-outline-info btn-sm">
+            <i class="bi bi-bar-chart"></i> 查看成本结构图
+          </button>
+        </div>
+      </div>
+
     </div>
-    <p class="step-placeholder__note">
-      💡 提示：GECOM 总成本 = COGS + 头程物流 + 平台费用 + 仓储费 + 关税 + 合规成本 + 广告成本
-    </p>
+
+    <!-- ========================================
+         Tab 3: 利润计算
+         ======================================== -->
+    <div class="tab-pane fade" id="profit-panel" role="tabpanel">
+
+      <div class="row">
+        <!-- 左列: 收入预测 -->
+        <div class="col-lg-6">
+          <div class="gecom-module-card">
+            <div class="module-header">
+              <h4>收入预测 (月度)</h4>
+            </div>
+
+            <div class="module-body">
+              <div class="auto-loaded-section">
+                <h6 class="section-title">自动读取 Step 2 Charter:</h6>
+                <div class="data-item">
+                  <span>产品名称:</span>
+                  <strong id="profit-product-name">智能宠物喂食器</strong>
+                </div>
+                <div class="data-item">
+                  <span>目标价格:</span>
+                  <strong id="profit-target-price" class="text-success">$49.99</strong>
+                </div>
+              </div>
+
+              <div class="auto-loaded-section mt-3">
+                <h6 class="section-title">自动读取 Step 3 预测:</h6>
+                <div class="data-item">
+                  <span>月销售量:</span>
+                  <strong id="profit-monthly-units">1,000 件</strong>
+                </div>
+                <div class="data-item">
+                  <span>退货率:</span>
+                  <strong id="profit-return-rate">5%</strong>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="revenue-calc">
+                <div class="calc-row">
+                  <span>毛销售额:</span>
+                  <strong id="gross-revenue">$49,990</strong>
+                </div>
+                <div class="calc-row text-danger">
+                  <span>退货扣减:</span>
+                  <strong id="return-deduction">-$2,500</strong>
+                </div>
+                <div class="calc-row calc-total">
+                  <span>净收入:</span>
+                  <strong id="net-revenue" class="text-success">$47,490</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 成本汇总 -->
+          <div class="gecom-module-card mt-4">
+            <div class="module-header">
+              <h4>成本汇总</h4>
+            </div>
+
+            <div class="module-body">
+              <div class="cost-summary-section">
+                <h6 class="section-title">启动成本 (CAPEX - 一次性):</h6>
+                <div class="calc-row calc-total">
+                  <span>Phase 0-1 总计:</span>
+                  <strong id="summary-capex" class="text-primary">$52,250</strong>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="cost-summary-section">
+                <h6 class="section-title">运营成本 (OPEX - 月度):</h6>
+                <div class="calc-row calc-total">
+                  <span>Phase 1-N 总计:</span>
+                  <strong id="summary-opex" class="text-warning">$51,050</strong>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="tco-section">
+                <h6 class="section-title">TCO (Total Cost of Ownership):</h6>
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label">预测时长 (月):</label>
+                    <input type="number" class="form-control" id="tco-months" value="6" min="1" max="24">
+                  </div>
+                </div>
+                <div class="calc-row">
+                  <span>CAPEX:</span>
+                  <strong id="tco-capex">$52,250</strong>
+                </div>
+                <div class="calc-row">
+                  <span>OPEX × <span id="tco-months-display">6</span> 个月:</span>
+                  <strong id="tco-opex-total">$306,300</strong>
+                </div>
+                <div class="calc-row calc-total">
+                  <span>TCO 总计:</span>
+                  <strong id="tco-total" class="text-danger">$358,550</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右列: 利润分析 -->
+        <div class="col-lg-6">
+          <div class="gecom-module-card">
+            <div class="module-header">
+              <h4>利润分析 (月度)</h4>
+            </div>
+
+            <div class="module-body">
+              <div class="profit-calc">
+                <div class="calc-row">
+                  <span>净收入:</span>
+                  <strong id="monthly-revenue" class="text-success">$47,490</strong>
+                </div>
+                <div class="calc-row">
+                  <span>月度 OPEX:</span>
+                  <strong id="monthly-opex" class="text-danger">-$51,050</strong>
+                </div>
+                <hr>
+                <div class="calc-row calc-total">
+                  <span>月度净利润:</span>
+                  <strong id="monthly-profit" class="profit-negative">-$3,560</strong>
+                  <span id="profit-indicator" class="badge bg-warning ms-2">⚠️</span>
+                </div>
+                <div class="calc-row">
+                  <span>净利润率:</span>
+                  <strong id="profit-margin" class="profit-negative">-7.5%</strong>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="breakeven-section">
+                <h6 class="section-title">盈亏平衡点分析:</h6>
+                <div class="breakeven-item">
+                  <span>CAPEX 回收周期:</span>
+                  <strong id="breakeven-months" class="text-warning">∞ (无法回本) ⚠️</strong>
+                </div>
+                <div class="breakeven-item">
+                  <span>盈亏平衡所需月销量:</span>
+                  <strong id="breakeven-units">1,150 件</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ECharts 图表区域 -->
+          <div class="gecom-module-card mt-4">
+            <div class="module-header">
+              <h4>数据可视化</h4>
+            </div>
+            <div class="module-body">
+              <!-- 成本结构饼图 -->
+              <div id="cost-pie-chart" style="width: 100%; height: 300px;"></div>
+
+              <!-- 利润趋势折线图 -->
+              <div id="profit-trend-chart" style="width: 100%; height: 300px;" class="mt-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================
+         Tab 4: 可行性报告
+         ======================================== -->
+    <div class="tab-pane fade" id="feasibility-panel" role="tabpanel">
+
+      <!-- 综合评分卡 -->
+      <div class="feasibility-score-card">
+        <h4 class="text-center mb-4">可行性综合评分</h4>
+
+        <div class="overall-score">
+          <div class="score-bar-wrapper">
+            <div class="score-bar">
+              <div class="score-bar-fill" id="overall-score-fill" style="width: 62%"></div>
+            </div>
+          </div>
+          <div class="score-value text-center mt-3">
+            <strong id="overall-score" style="font-size: 3rem;">62</strong>
+            <span style="font-size: 1.5rem;"> / 100</span>
+            <span id="overall-indicator" class="badge bg-warning ms-2">⚠️</span>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="score-breakdown">
+          <div class="score-item">
+            <div class="score-label">
+              <span>财务可行性</span>
+              <span class="badge bg-warning">⚠️ 60/100</span>
+            </div>
+            <div class="progress mt-2" style="height: 24px;">
+              <div class="progress-bar bg-warning" style="width: 60%"></div>
+            </div>
+          </div>
+
+          <div class="score-item mt-3">
+            <div class="score-label">
+              <span>市场可行性</span>
+              <span class="badge bg-success">✅ 75/100</span>
+            </div>
+            <div class="progress mt-2" style="height: 24px;">
+              <div class="progress-bar bg-success" style="width: 75%"></div>
+            </div>
+          </div>
+
+          <div class="score-item mt-3">
+            <div class="score-label">
+              <span>运营可行性</span>
+              <span class="badge bg-warning">⚠️ 55/100</span>
+            </div>
+            <div class="progress mt-2" style="height: 24px;">
+              <div class="progress-bar bg-warning" style="width: 55%"></div>
+            </div>
+          </div>
+
+          <div class="score-item mt-3">
+            <div class="score-label">
+              <span>合规可行性</span>
+              <span class="badge bg-success">✅ 80/100</span>
+            </div>
+            <div class="progress mt-2" style="height: 24px;">
+              <div class="progress-bar bg-success" style="width: 80%"></div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="conclusion text-center">
+          <div class="alert alert-warning">
+            <h5><strong>⚠️ 建议: 需要优化后再执行</strong></h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- 风险预警 -->
+      <div class="gecom-module-card mt-4">
+        <div class="module-header">
+          <h4>风险预警</h4>
+        </div>
+
+        <div class="module-body">
+          <div class="risk-section">
+            <h6 class="section-title text-danger">⚠️ 高风险项:</h6>
+
+            <div class="risk-item risk-high">
+              <div class="risk-number">1</div>
+              <div class="risk-content">
+                <strong>月度运营亏损 $3,560</strong>
+                <p class="text-muted mb-0">净利润率为负，需优化成本结构或提高售价</p>
+              </div>
+            </div>
+
+            <div class="risk-item risk-high">
+              <div class="risk-number">2</div>
+              <div class="risk-content">
+                <strong>CAPEX 回收周期过长 (无法回本)</strong>
+                <p class="text-muted mb-0">建议降低启动成本或提高售价</p>
+              </div>
+            </div>
+
+            <div class="risk-item risk-high">
+              <div class="risk-number">3</div>
+              <div class="risk-content">
+                <strong>获客成本偏高 ($9.00/客户)</strong>
+                <p class="text-muted mb-0">CAC/LTV 比例不健康，需优化营销策略</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="risk-section mt-4">
+            <h6 class="section-title text-success">✅ 低风险项:</h6>
+
+            <div class="risk-item risk-low">
+              <div class="risk-number">1</div>
+              <div class="risk-content">
+                <strong>合规成本可控</strong>
+                <p class="text-muted mb-0">市场准入和产品合规成本在合理范围内</p>
+              </div>
+            </div>
+
+            <div class="risk-item risk-low">
+              <div class="risk-number">2</div>
+              <div class="risk-content">
+                <strong>供应链稳定</strong>
+                <p class="text-muted mb-0">供应商可靠，物流渠道成熟</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 优化建议 -->
+      <div class="gecom-module-card mt-4">
+        <div class="module-header">
+          <h4>AI 优化建议</h4>
+        </div>
+
+        <div class="module-body">
+          <div class="optimization-section">
+            <h6 class="section-title">🎯 短期优化 (0-3个月):</h6>
+
+            <div class="optimization-item">
+              <div class="optimization-number">1</div>
+              <div class="optimization-content">
+                <h6>M6 营销优化</h6>
+                <ul>
+                  <li>降低 PPC 预算 30%</li>
+                  <li>增加 Organic SEO 投入</li>
+                </ul>
+                <p class="text-success mb-0">潜在节省: <strong>$1,500</strong> / 月</p>
+              </div>
+            </div>
+
+            <div class="optimization-item">
+              <div class="optimization-number">2</div>
+              <div class="optimization-content">
+                <h6>M4 供应链优化</h6>
+                <ul>
+                  <li>寻找成本更低的供应商 (-10% COGS)</li>
+                  <li>批量采购降低单价</li>
+                </ul>
+                <p class="text-success mb-0">潜在节省: <strong>$1,500</strong> / 月</p>
+              </div>
+            </div>
+
+            <div class="optimization-item">
+              <div class="optimization-number">3</div>
+              <div class="optimization-content">
+                <h6>M7 渠道组合</h6>
+                <ul>
+                  <li>尝试 Shopify DTC (佣金更低)</li>
+                  <li>多渠道分散风险</li>
+                </ul>
+                <p class="text-success mb-0">潜在节省: <strong>$800</strong> / 月</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="optimization-section mt-4">
+            <h6 class="section-title">🚀 中期优化 (3-6个月):</h6>
+
+            <div class="optimization-item">
+              <div class="optimization-number">4</div>
+              <div class="optimization-content">
+                <h6>M5 物流模式切换</h6>
+                <ul>
+                  <li>从 FBA 切换到 3PL 海外仓</li>
+                  <li>降低仓储和配送费用</li>
+                </ul>
+                <p class="text-success mb-0">潜在节省: <strong>$1,200</strong> / 月</p>
+              </div>
+            </div>
+
+            <div class="optimization-item">
+              <div class="optimization-number">5</div>
+              <div class="optimization-content">
+                <h6>定价策略调整</h6>
+                <ul>
+                  <li>提价至 $54.99 (+10%)</li>
+                  <li>推出高价 Premium SKU</li>
+                </ul>
+                <p class="text-success mb-0">增加月收入: <strong>$5,000</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="optimized-forecast">
+            <h6 class="section-title">📊 优化后预测:</h6>
+            <div class="optimized-metrics">
+              <div class="metric-item">
+                <span>月度净利润:</span>
+                <strong class="text-success">$2,440 ✅</strong>
+                <small class="text-muted d-block">当前: -$3,560</small>
+              </div>
+              <div class="metric-item">
+                <span>净利润率:</span>
+                <strong class="text-success">4.6% ✅</strong>
+                <small class="text-muted d-block">当前: -7.5%</small>
+              </div>
+              <div class="metric-item">
+                <span>CAPEX 回收:</span>
+                <strong class="text-success">10.2 个月 ✅</strong>
+                <small class="text-muted d-block">当前: 无法回本</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 决策建议 -->
+      <div class="decision-card mt-4">
+        <h4 class="text-center mb-4">最终决策建议</h4>
+
+        <div class="decision-conclusion text-center mb-4">
+          <div class="alert alert-warning">
+            <h5><strong>⚠️ 建议: 优化后执行</strong></h5>
+          </div>
+        </div>
+
+        <div class="decision-details">
+          <p class="text-center">当前状态下不建议立即启动，需完成以下优化:</p>
+
+          <div class="must-do-section mt-4">
+            <h6 class="section-title">☑️ 必须项:</h6>
+            <ul>
+              <li>降低 COGS 至少 10%</li>
+              <li>优化营销预算，降低 CAC</li>
+              <li>考虑提价或推出高价 SKU</li>
+            </ul>
+          </div>
+
+          <div class="recommended-section mt-4">
+            <h6 class="section-title">☐ 建议项:</h6>
+            <ul>
+              <li>探索 3PL 替代 FBA</li>
+              <li>增加 DTC 渠道分散风险</li>
+            </ul>
+          </div>
+
+          <div class="expected-results mt-4">
+            <h6 class="section-title">优化完成后，预期可实现:</h6>
+            <ul class="text-success">
+              <li>✅ 月度盈利 $2,000+</li>
+              <li>✅ 回本周期 &lt; 12个月</li>
+              <li>✅ 净利润率 &gt; 5%</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="action-buttons text-center mt-4">
+          <button class="btn btn-primary me-2">
+            <i class="bi bi-file-earmark-pdf"></i> 导出完整报告 PDF
+          </button>
+          <button class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-counterclockwise"></i> 返回修改参数
+          </button>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </div>

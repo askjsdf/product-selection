@@ -1,29 +1,420 @@
-<!-- Step 5: 竞品深度拆解 - 占位符 -->
-<div class="step-placeholder">
-  <div class="step-placeholder__content">
-    <div class="step-placeholder__icon">🔬</div>
-    <h2 class="step-placeholder__title">Step 5: 竞品深度拆解</h2>
-    <p class="step-placeholder__description">
-      7维度竞品分析，挖掘差异化机会和定位策略
-    </p>
-    <div class="step-placeholder__status">
-      <span class="badge badge-warning">开发中</span>
+<!-- Step 5: 决策汇总与报告导出 -->
+<div id="step5-container" class="step-container">
+  <!-- 头部标题 -->
+  <div class="step-header mb-4">
+    <h2 class="step-title">Step 5: 决策汇总与报告导出</h2>
+    <p class="step-subtitle text-muted">选品全流程总结 - 最终决策支持</p>
+  </div>
+
+  <!-- 决策概览卡片 -->
+  <div class="decision-overview-card mb-4">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h3 class="overview-title mb-3">选品决策概览</h3>
+
+        <div class="overview-grid">
+          <div class="overview-item">
+            <span class="overview-label">选中组合</span>
+            <strong id="overview-combination">宠物用品 × 美国 × Amazon</strong>
+          </div>
+          <div class="overview-item">
+            <span class="overview-label">目标产品</span>
+            <strong id="overview-product">智能宠物喂食器</strong>
+          </div>
+          <div class="overview-item">
+            <span class="overview-label">目标价格</span>
+            <strong id="overview-price" class="text-success">$49.99</strong>
+          </div>
+          <div class="overview-item">
+            <span class="overview-label">预期月销量</span>
+            <strong id="overview-units">1,000 件</strong>
+          </div>
+          <div class="overview-item">
+            <span class="overview-label">预期月利润</span>
+            <strong id="overview-profit" class="text-danger">-$3,560 ⚠️</strong>
+          </div>
+          <div class="overview-item">
+            <span class="overview-label">回本周期</span>
+            <strong id="overview-payback" class="text-warning">无法回本 ⚠️</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <div class="overall-score-display">
+          <div class="score-circle">
+            <span class="score-number" id="overall-score-number">62</span>
+            <span class="score-max">/ 100</span>
+          </div>
+          <div class="score-label mt-2">综合评分</div>
+          <div class="decision-badge badge bg-warning mt-2" id="decision-badge">
+            ⚠️ 需要优化后再执行
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="step-placeholder__features">
-      <h3>核心功能：</h3>
-      <ul>
-        <li>✅ 市场需求洞察（价格带、功能需求、使用场景）</li>
-        <li>✅ 竞品全景分析（定位图、市场份额）</li>
-        <li>✅ 深度竞品拆解（7维度：产品/定价/Listing/内容/广告/运营/站外）</li>
-        <li>✅ 竞品三级分类（直接/间接/相关）</li>
-        <li>✅ 1-3星差评结构化分析</li>
-        <li>✅ Q&A高频问题分析</li>
-        <li>✅ 差异化机会识别（4大方向）</li>
-        <li>✅ 定位策略输出（7模块）</li>
-      </ul>
+  </div>
+
+  <!-- 四步骤总结网格 -->
+  <div class="summary-grid mb-4">
+
+    <!-- Step 1: 机会发现总结 -->
+    <div class="summary-card">
+      <div class="summary-header">
+        <h4><span class="step-number">Step 1</span> 机会发现总结</h4>
+      </div>
+      <div class="summary-body">
+        <div class="summary-section">
+          <h6 class="section-title">选择组合</h6>
+          <div class="info-row">
+            <span>平台</span>
+            <strong id="step1-platform">Amazon</strong>
+          </div>
+          <div class="info-row">
+            <span>品类</span>
+            <strong id="step1-category">宠物用品</strong>
+          </div>
+          <div class="info-row">
+            <span>国家</span>
+            <strong id="step1-country">美国</strong>
+          </div>
+        </div>
+
+        <div class="summary-section mt-3">
+          <h6 class="section-title">机会评分</h6>
+          <div class="info-row">
+            <span>综合分</span>
+            <strong class="text-info" id="step1-total-score">68.5 / 100</strong>
+          </div>
+          <div class="score-breakdown">
+            <div class="score-bar-item">
+              <span>市场吸引力 (MA)</span>
+              <div class="mini-progress">
+                <div class="mini-progress-bar" style="width: 72%"></div>
+              </div>
+              <strong>72</strong>
+            </div>
+            <div class="score-bar-item">
+              <span>竞争友好度 (CF)</span>
+              <div class="mini-progress">
+                <div class="mini-progress-bar" style="width: 65%"></div>
+              </div>
+              <strong>65</strong>
+            </div>
+            <div class="score-bar-item">
+              <span>利润潜力 (PP)</span>
+              <div class="mini-progress">
+                <div class="mini-progress-bar" style="width: 70%"></div>
+              </div>
+              <strong>70</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-section mt-3">
+          <h6 class="section-title">核心洞察</h6>
+          <ul class="insight-list">
+            <li class="insight-item success">✅ 市场规模大，增长稳定</li>
+            <li class="insight-item success">✅ 竞争适中，有差异化空间</li>
+            <li class="insight-item warning">⚠️ 需关注物流成本控制</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <p class="step-placeholder__note">
-      💡 提示：差评和Q&A是发现差异化机会的金矿！
+
+    <!-- Step 2: 产品选择总结 -->
+    <div class="summary-card">
+      <div class="summary-header">
+        <h4><span class="step-number">Step 2</span> 产品选择总结</h4>
+      </div>
+      <div class="summary-body">
+        <div class="summary-section">
+          <h6 class="section-title">Product Charter</h6>
+          <div class="info-row">
+            <span>产品名称</span>
+            <strong id="step2-product-name">智能宠物喂食器</strong>
+          </div>
+          <div class="info-row">
+            <span>产品定位</span>
+            <strong id="step2-positioning">中高端智能宠物用品</strong>
+          </div>
+          <div class="info-row">
+            <span>目标价格</span>
+            <strong id="step2-price" class="text-success">$49.99</strong>
+          </div>
+        </div>
+
+        <div class="summary-section mt-3">
+          <h6 class="section-title">核心功能</h6>
+          <ul class="feature-list" id="step2-features">
+            <li>• 定时定量喂食</li>
+            <li>• APP 远程控制</li>
+            <li>• 语音录制播放</li>
+            <li>• 食物存储监控</li>
+          </ul>
+        </div>
+
+        <div class="summary-section mt-3">
+          <h6 class="section-title">差异化点</h6>
+          <ul class="differentiation-list" id="step2-differentiation">
+            <li class="diff-item">🎯 AI 宠物行为识别</li>
+            <li class="diff-item">📦 超大容量（7L）</li>
+            <li class="diff-item">🔋 双电源备份</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: 运营策略总结 -->
+    <div class="summary-card">
+      <div class="summary-header">
+        <h4><span class="step-number">Step 3</span> 运营策略总结</h4>
+      </div>
+      <div class="summary-body">
+        <div class="summary-section">
+          <h6 class="section-title">流量策略</h6>
+          <div class="info-row">
+            <span>PPC 广告</span>
+            <strong id="step3-ppc">$5,000 / 月</strong>
+          </div>
+          <div class="info-row">
+            <span>站外引流</span>
+            <strong id="step3-offsite">KOL 合作 $2,000/月</strong>
+          </div>
+          <div class="info-row">
+            <span>自然流量</span>
+            <strong>SEO + 评论优化</strong>
+          </div>
+        </div>
+
+        <div class="summary-section mt-3">
+          <h6 class="section-title">转化策略</h6>
+          <div class="info-row">
+            <span>Listing 优化</span>
+            <strong>高质量图片 + A+ 内容</strong>
+          </div>
+          <div class="info-row">
+            <span>定价策略</span>
+            <strong>$49.99（竞品中位价）</strong>
+          </div>
+          <div class="info-row">
+            <span>促销计划</span>
+            <strong>新品期 20% off Coupon</strong>
+          </div>
+        </div>
+
+        <div class="summary-section mt-3">
+          <h6 class="section-title">差异化打法</h6>
+          <ul class="strategy-list">
+            <li>产品：AI 识别 + 超大容量</li>
+            <li>内容：强化旅行/出差场景</li>
+            <li>服务：2 年质保 + 24h 客服</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: 利润分析总结 -->
+    <div class="summary-card">
+      <div class="summary-header">
+        <h4><span class="step-number">Step 4</span> 利润分析总结</h4>
+      </div>
+      <div class="summary-body">
+        <div class="summary-section">
+          <h6 class="section-title">启动成本 (CAPEX)</h6>
+          <div class="info-row">
+            <span>市场准入</span>
+            <strong id="step4-m1">$5,250</strong>
+          </div>
+          <div class="info-row">
+            <span>渠道建设</span>
+            <strong id="step4-m2">$7,000</strong>
+          </div>
+          <div class="info-row">
+            <span>供应链准备</span>
+            <strong id="step4-m3">$40,000</strong>
+          </div>
+          <div class="info-row total">
+            <span>CAPEX 总计</span>
+            <strong id="step4-capex" class="text-primary">$52,250</strong>
+          </div>
+        </div>
+
+        <div class="summary-section mt-3">
+          <h6 class="section-title">运营成本 (OPEX 月度)</h6>
+          <div class="info-row">
+            <span>商品成本与税费</span>
+            <strong id="step4-m4">$19,700</strong>
+          </div>
+          <div class="info-row">
+            <span>履约与物流</span>
+            <strong id="step4-m5">$4,350</strong>
+          </div>
+          <div class="info-row">
+            <span>营销与获客</span>
+            <strong id="step4-m6">$9,000</strong>
+          </div>
+          <div class="info-row total">
+            <span>OPEX 月度总计</span>
+            <strong id="step4-opex" class="text-warning">$51,050</strong>
+          </div>
+        </div>
+
+        <div class="summary-section mt-3">
+          <h6 class="section-title">利润分析</h6>
+          <div class="info-row">
+            <span>净收入</span>
+            <strong class="text-success">$47,490</strong>
+          </div>
+          <div class="info-row">
+            <span>净利润</span>
+            <strong class="text-danger" id="step4-profit">-$3,560 ⚠️</strong>
+          </div>
+          <div class="info-row">
+            <span>净利润率</span>
+            <strong class="text-danger" id="step4-margin">-7.5%</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 综合评估与决策建议 -->
+  <div class="final-evaluation-card mb-4">
+    <h3 class="evaluation-title mb-4">综合评估与决策建议</h3>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="feasibility-score-section">
+          <h5 class="mb-3">可行性评分</h5>
+
+          <div class="score-progress-wrapper">
+            <div class="score-progress-bar">
+              <div class="score-progress-fill" id="feasibility-progress" style="width: 62%"></div>
+            </div>
+            <div class="score-progress-label">
+              <span id="feasibility-score">62</span> / 100
+            </div>
+          </div>
+
+          <div class="dimension-scores mt-4">
+            <div class="dimension-item">
+              <div class="dimension-header">
+                <span>市场可行性</span>
+                <span class="badge bg-success">75/100 ✅</span>
+              </div>
+              <div class="mini-progress">
+                <div class="mini-progress-bar bg-success" style="width: 75%"></div>
+              </div>
+            </div>
+
+            <div class="dimension-item">
+              <div class="dimension-header">
+                <span>财务可行性</span>
+                <span class="badge bg-warning">60/100 ⚠️</span>
+              </div>
+              <div class="mini-progress">
+                <div class="mini-progress-bar bg-warning" style="width: 60%"></div>
+              </div>
+            </div>
+
+            <div class="dimension-item">
+              <div class="dimension-header">
+                <span>运营可行性</span>
+                <span class="badge bg-warning">55/100 ⚠️</span>
+              </div>
+              <div class="mini-progress">
+                <div class="mini-progress-bar bg-warning" style="width: 55%"></div>
+              </div>
+            </div>
+
+            <div class="dimension-item">
+              <div class="dimension-header">
+                <span>合规可行性</span>
+                <span class="badge bg-success">80/100 ✅</span>
+              </div>
+              <div class="mini-progress">
+                <div class="mini-progress-bar bg-success" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="decision-recommendation-section">
+          <h5 class="mb-3">最终决策建议</h5>
+
+          <div class="decision-alert alert alert-warning mb-4">
+            <h6 class="alert-heading">⚠️ 建议: 优化后执行</h6>
+            <p class="mb-0">当前状态下不建议立即启动，需完成以下优化</p>
+          </div>
+
+          <div class="optimization-checklist">
+            <h6 class="checklist-title">必须优化项:</h6>
+            <div class="checklist-items">
+              <div class="checklist-item">
+                <input type="checkbox" id="opt1">
+                <label for="opt1">降低 COGS 至少 10%</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="opt2">
+                <label for="opt2">优化营销预算，降低 CAC</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="opt3">
+                <label for="opt3">考虑提价或推出高价 SKU</label>
+              </div>
+            </div>
+
+            <h6 class="checklist-title mt-3">建议优化项:</h6>
+            <div class="checklist-items">
+              <div class="checklist-item">
+                <input type="checkbox" id="opt4">
+                <label for="opt4">探索 3PL 替代 FBA</label>
+              </div>
+              <div class="checklist-item">
+                <input type="checkbox" id="opt5">
+                <label for="opt5">增加 DTC 渠道分散风险</label>
+              </div>
+            </div>
+
+            <div class="expected-results mt-4">
+              <h6 class="checklist-title">优化后预期:</h6>
+              <ul class="result-list">
+                <li class="text-success">✅ 月度盈利 $2,000+</li>
+                <li class="text-success">✅ 回本周期 &lt; 12 个月</li>
+                <li class="text-success">✅ 净利润率 &gt; 5%</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 导出报告区域 -->
+  <div class="export-section text-center">
+    <h4 class="mb-4">导出完整选品报告</h4>
+
+    <div class="export-buttons">
+      <button class="btn btn-primary btn-lg me-3" onclick="exportPDFReport()">
+        <i class="bi bi-file-earmark-pdf"></i> 下载 PDF 报告
+      </button>
+      <button class="btn btn-outline-info btn-lg" onclick="exportExcelData()">
+        <i class="bi bi-file-earmark-excel"></i> 导出 Excel 数据
+      </button>
+    </div>
+
+    <p class="export-note mt-3 text-muted">
+      报告将包含：机会发现、产品选择、运营策略、利润分析、综合评估等完整内容
     </p>
   </div>
+
+  <!-- 隐藏的 PDF 报告内容模板（用于生成 PDF） -->
+  <div id="pdf-report-content" style="display: none;">
+    <!-- PDF 报告的完整 HTML 内容将在这里动态生成 -->
+  </div>
+
 </div>
