@@ -59,18 +59,26 @@ const Step3App = {
 
   // Load mock data
   loadMockData() {
-    if (typeof Step3MockData !== 'undefined' && Step3MockData.competitors) {
-      this.competitors = Step3MockData.competitors;
-      // Select first 3 competitors by default
-      this.selectedCompetitors = this.competitors.slice(0, 3).map(c => c.id);
-      console.log('Mock data loaded:', this.competitors.length, 'competitors');
+    console.log('loadMockData: typeof Step3MockData =', typeof Step3MockData);
+    if (typeof Step3MockData !== 'undefined') {
+      console.log('loadMockData: Step3MockData.competitors =', Step3MockData.competitors ? Step3MockData.competitors.length : 'undefined');
+      if (Step3MockData.competitors) {
+        this.competitors = Step3MockData.competitors;
+        // Select first 3 competitors by default
+        this.selectedCompetitors = this.competitors.slice(0, 3).map(c => c.id);
+        console.log('Mock data loaded:', this.competitors.length, 'competitors');
+      } else {
+        console.error('Step3MockData.competitors is undefined or null');
+      }
+    } else {
+      console.error('Step3MockData is undefined - mock data file not loaded');
     }
   },
 
   // Setup event listeners
   setupEventListeners() {
     // Navigation tabs
-    document.querySelectorAll('.nav-tab').forEach(tab => {
+    document.querySelectorAll('.step3-tab').forEach(tab => {
       tab.addEventListener('click', (e) => {
         const module = e.currentTarget.dataset.module;
         this.switchModule(module);
@@ -84,7 +92,7 @@ const Step3App = {
     this.currentModule = moduleName;
 
     // Update active tab
-    document.querySelectorAll('.nav-tab').forEach(tab => {
+    document.querySelectorAll('.step3-tab').forEach(tab => {
       tab.classList.remove('active');
       if (tab.dataset.module === moduleName) {
         tab.classList.add('active');
@@ -97,7 +105,7 @@ const Step3App = {
 
   // Render module content
   renderModule(moduleName) {
-    const container = document.getElementById('module-container');
+    const container = document.getElementById('step3-module-container');
 
     switch(moduleName) {
       case 'competitor-identification':
@@ -923,8 +931,9 @@ const ChartRenderer = {
 };
 
 // ========================================
-// Initialize on DOM Ready
+// Initialize (called by main.js when step is loaded)
 // ========================================
-document.addEventListener('DOMContentLoaded', () => {
+// 立即初始化（因为这个脚本是在HTML加载后才被main.js动态加载的）
+if (typeof Step3App !== 'undefined') {
   Step3App.init();
-});
+}
