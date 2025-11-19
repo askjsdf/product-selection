@@ -53,6 +53,9 @@ async function initStep1() {
     // 4. 从 localStorage 恢复用户偏好
     restoreUserPreferences();
 
+    // 5. 预设候选池（如果为空）
+    initializeDefaultCandidates();
+
     console.log('[Step1] 初始化完成');
   } catch (error) {
     console.error('[Step1] 初始化失败:', error);
@@ -502,7 +505,7 @@ function renderHeatmap() {
     grid: {
       left: 120,
       top: 60,
-      right: 20,
+      right: 80,
       bottom: 60
     },
     xAxis: {
@@ -527,13 +530,16 @@ function renderHeatmap() {
       min: 0,
       max: 100,
       calculable: true,
-      orient: 'horizontal',
-      left: 'center',
-      bottom: 0,
+      orient: 'vertical',
+      right: 10,
+      top: 'center',
       inRange: {
         color: ['#50a3ba', '#eac736', '#d94e5d']
       },
-      text: ['高分', '低分']
+      text: ['高分', '低分'],
+      textStyle: {
+        color: 'rgba(255, 255, 255, 0.7)'
+      }
     },
     series: [{
       name: Step1State.currentDimension,
@@ -1290,6 +1296,30 @@ function restoreUserPreferences() {
         select.value = preferences.dimension;
       }
     }
+  }
+}
+
+// ========== 初始化默认候选池 ==========
+function initializeDefaultCandidates() {
+  // 检查候选池是否为空
+  const existingPool = AppStorage.getOpportunityPool();
+
+  if (!existingPool || existingPool.length === 0) {
+    // 预设两个默认组合
+    const defaultCandidates = [
+      'combo_021',  // 宠物用品×US×Amazon (蓝海机会, 51.7分)
+      'combo_176'   // 厨房用品×AE×AliExpress (平衡机会, 73.7分)
+    ];
+
+    // 添加到候选池
+    defaultCandidates.forEach(comboId => {
+      const combo = Step1State.combinationsData.find(c => c.id === comboId);
+      if (combo) {
+        AppStorage.addToOpportunityPool(combo);
+      }
+    });
+
+    console.log('[Step1] 已预设默认候选池:', defaultCandidates);
   }
 }
 
