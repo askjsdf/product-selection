@@ -98,19 +98,20 @@ function loadStep2Data() {
 
   // 默认数据（用于演示）
   return {
-    product: '智能猫砂盆',
-    targetMarket: '中高端养猫人群（年收入$50K+）',
-    sellingPrice: 189,
-    monthlyTarget: 500,
+    product: 'PawGenius™ Smart Interactive Dog Toy',
+    targetMarket: '现代化KONG替代品 - 年轻化/美学化/智能化互动玩具',
+    sellingPrice: 24.99,
+    monthlyTarget: 800,
     features: [
-      '自动清洁与除臭功能',
-      'APP远程监控与健康分析',
-      '静音设计，适合公寓使用'
+      '天然橡胶超耐咬材质（≥10,000次）',
+      'AI难度自适应系统',
+      'APP联动游戏时长追踪',
+      '双色高对比度设计（橙蓝/绿紫）'
     ],
     differentiation: [
-      '健康监测：通过传感器分析猫咪排泄习惯',
-      '智能提醒：自动提醒更换猫砂和清洁',
-      '静音技术：噪音<30dB，不打扰猫咪和主人'
+      'AI难度自适应系统：满意度+48%',
+      'App联动时长追踪：满意度+35%',
+      '北欧极简美学设计：满意度+18%'
     ]
   };
 }
@@ -165,31 +166,31 @@ function loadStep4Data() {
   // 默认数据（用于演示）
   return {
     capex: {
-      m1: 5250,
-      m2: 28500,
-      m3: 18500,
-      total: 52250
+      m1: 3200,
+      m2: 5600,
+      m3: 17000,
+      total: 25800
     },
     opex: {
-      m4: 19700,
-      m5: 4350,
-      m6: 9000,
-      m7: 6800,
-      m8: 11200,
-      total: 51050
+      m4: 6000,
+      m5: 2400,
+      m6: 5600,
+      m7: 2849,
+      m8: 0,
+      total: 16849
     },
     revenue: {
-      sellingPrice: 189,
-      monthlyUnits: 500,
-      monthlyRevenue: 94500,
+      sellingPrice: 24.99,
+      monthlyUnits: 800,
+      monthlyRevenue: 19992,
       platformFee: 15, // %
-      netRevenue: 80325
+      netRevenue: 18992
     },
     profit: {
-      monthlyProfit: 29275,
-      profitMargin: 31.0, // %
-      paybackPeriod: 1.8, // months
-      roi: 67.2 // %
+      monthlyProfit: 2143,
+      profitMargin: 11.3, // %
+      paybackPeriod: 12.0, // months
+      roi: 100 // %
     }
   };
 }
